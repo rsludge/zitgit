@@ -1,0 +1,15 @@
+html
+  head
+  body
+    |Current branch:
+    = current_branch.name
+    |Commits:
+    - commits.each do |commit|
+      div
+        = commit.id
+      div
+        = commit.sha
+      div 
+        = commit.author_string
+      div
+        = commit.message
