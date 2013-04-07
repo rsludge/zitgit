@@ -1,16 +1,23 @@
-html
-  head
-    link rel="stylesheet" href="stylesheets/app.css"
-  body
-    |Current branch:
-    = current_branch.name
-    |Commits:
-    - commits.each do |commit|
-      div
-        = commit.id
-      div
+nav.top-bar
+  ul
+    li.name
+      h1
+        a
+          = repo_name
+  section
+    ul.left
+      li.divider
+      li.has_dropdown
+        a.active
+          = current_branch.name
+      li.divider
+.history
+  - commits.each do |commit|
+    .row.display
+      .four.columns
         = commit.sha
-      div 
-        = commit.author_string
-      div
+      .four.columns
+        =' commit.author.name
+        = commit.author.email
+      .four.columns
         = commit.message
