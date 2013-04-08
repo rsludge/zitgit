@@ -20,9 +20,9 @@ nav.top-bar
     table.twelve
       thead
         tr
-          th SHA
-          th Author
-          th Message
+          th.sha SHA
+          th.author Author
+          th.message Message
       tbody
         - commits.each do |commit|
           tr
@@ -34,3 +34,5 @@ nav.top-bar
             td.message
               = commit.message
   .six.columns
+    .commit
+      |Commit info

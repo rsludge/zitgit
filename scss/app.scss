@@ -2,3 +2,15 @@
 .top-bar {
     z-index: 5;
 }
+table{
+    table-layout: fixed;
+    td{
+        overflow: hidden;
+    }
+    .sha{
+        width: 100px;
+    }
+    .author{
+        width: 180px;
+    }
+}
