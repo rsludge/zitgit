@@ -11,13 +11,22 @@ nav.top-bar
         a.active
           = current_branch.name
       li.divider
-.history
-  - commits.each do |commit|
-    .row.display
-      .four.columns
-        = commit.sha
-      .four.columns
-        =' commit.author.name
-        = commit.author.email
-      .four.columns
-        = commit.message
+.main
+  .history.six.columns
+    table.twelve
+      thead
+        tr
+          th SHA
+          th Author
+          th Message
+      tbody
+        - commits.each do |commit|
+          tr
+            td.sha
+              = commit.sha
+            td.author
+              =' commit.author.name
+              = commit.author.email
+            td.message
+              = commit.message
+  .six.columns
