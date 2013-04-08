@@ -3,13 +3,17 @@ nav.top-bar
     li.name
       h1
         a
-          = repo_name
+          = repo_name      
   section
     ul.left
       li.divider
-      li.has_dropdown
+      li.has-dropdown
         a.active
           = current_branch.name
+        ul.dropdown
+          - branches.each do |branch|
+            li
+              a href="" = branch.name
       li.divider
 .main
   .history.six.columns
