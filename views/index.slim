@@ -35,4 +35,14 @@ nav.top-bar
               = commit.message
   .six.columns
     .commit
-      |Commit info
+      h3=last_commit.sha
+      h4
+        =' last_commit.author.name
+        = last_commit.author.email
+      h4=last_commit.message
+      .diff-names
+        - last_commit.diffs.each do |diff|
+          = diff.a_path
+      .diffs
+        - last_commit.diffs.each do |diff|
+          = diff.diff

@@ -21,12 +21,13 @@ class Zitgit < Sinatra::Base
     current_branch = Grit::Head.current(repo)
     commits = repo.commits(current_branch.name, 200)
     repo_name = File.basename(repo.working_dir)
-    branches = repo.heads
+    branches = repo.heads    
     slim :index, :locals => { 
       current_branch: current_branch, 
       commits: commits, 
       repo_name: repo_name,
-      branches: branches
+      branches: branches,
+      last_commit: commits[0]
     }
   end
 
