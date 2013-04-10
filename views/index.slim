@@ -40,9 +40,12 @@ nav.top-bar
         =' last_commit.author.name
         = last_commit.author.email
       h4=last_commit.message
-      .diff-names
+      ul.diff-names
         - last_commit.diffs.each do |diff|
-          = diff.a_path
-      .diffs
+          li
+            a
+              = diff.a_path
+      ul.diffs
         - last_commit.diffs.each do |diff|
-          = diff.diff
+          li
+            = diff.diff

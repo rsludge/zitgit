@@ -19,3 +19,12 @@ table{
         overflow: hidden;
     }
 }
+.diff-names{
+    list-style-type: none;
+}
+.diffs{
+    list-style-type: none;
+    li{
+        border-bottom: solid black 1px;
+    }
+}
