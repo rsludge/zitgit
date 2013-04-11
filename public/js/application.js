@@ -7,4 +7,10 @@ $(function(){
             $('table.twelve').replaceWith(data);
         });
     })
+
+    $('table.twelve tr').on('click', function(e){
+        $('table.twelve tr.selected').removeClass('selected');
+        $(this).addClass('selected');
+        $('.show_commit').html($(this).find('.commit').clone());
+    })
 });

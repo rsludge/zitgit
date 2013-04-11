@@ -14,5 +14,7 @@ table.twelve
             = commit.author.email
           td.message
             = commit.message
+          td.hidden
+            == slim :'commits/detail', :locals => {commit: commit}, :layout => false
 
 

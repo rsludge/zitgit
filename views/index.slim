@@ -18,5 +18,5 @@ nav.top-bar
 .main
   .history.six.columns
     == slim :'commits/list', :locals => {commits: commits}, :layout => false
-  .six.columns
+  .show_commit.six.columns
     == slim :'commits/detail', :locals => {commit: last_commit}, :layout => false
