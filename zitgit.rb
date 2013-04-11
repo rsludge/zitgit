@@ -31,6 +31,12 @@ class Zitgit < Sinatra::Base
     }
   end
 
+  get "/branch/:branch_name" do |branch_name|
+    repo = Grit::Repo.new('')
+    commits = repo.commits(branch_name, 200)
+    slim :branch, :locals => { commits: commits }, :layout => false
+  end
+
   get "/stylesheets/*.css" do |path|
     content_type "text/css", charset: "utf-8"
     scss :"#{path}"

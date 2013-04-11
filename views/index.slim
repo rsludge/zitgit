@@ -8,12 +8,12 @@ nav.top-bar
     ul.left
       li.divider
       li.has-dropdown
-        a.active
+        a.active.current_branch
           = current_branch.name
         ul.dropdown
           - branches.each do |branch|
             li
-              a href="" = branch.name
+              a href="branch/#{branch.name}" = branch.name
       li.divider
 .main
   .history.six.columns
