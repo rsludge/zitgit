@@ -17,35 +17,6 @@ nav.top-bar
       li.divider
 .main
   .history.six.columns
-    table.twelve
-      thead
-        tr
-          th.sha SHA
-          th.author Author
-          th.message Message
-      tbody
-        - commits.each do |commit|
-          tr
-            td.sha
-              = commit.sha
-            td.author
-              =' commit.author.name
-              = commit.author.email
-            td.message
-              = commit.message
+    == slim :'commits/list', :locals => {commits: commits}, :layout => false
   .six.columns
-    .commit
-      h3=last_commit.sha
-      h4
-        =' last_commit.author.name
-        = last_commit.author.email
-      h4=last_commit.message
-      ul.diff-names
-        - last_commit.diffs.each do |diff|
-          li
-            a
-              = diff.a_path
-      ul.diffs
-        - last_commit.diffs.each do |diff|
-          li
-            = diff.diff
+    == slim :'commits/detail', :locals => {commit: last_commit}, :layout => false

@@ -1,0 +1,16 @@
+.commit
+  h3=commit.sha
+  h4
+    =' commit.author.name
+    = commit.author.email
+  h4=commit.message
+  ul.diff-names
+    - commit.diffs.each do |diff|
+      li
+        a
+          = diff.a_path
+  ul.diffs
+    - commit.diffs.each do |diff|
+      li
+        = diff.diff
+
