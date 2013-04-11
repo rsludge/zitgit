@@ -1,14 +1,27 @@
 .commit
-  h3=commit.sha
+  h4=commit.message
   h4
     =' commit.author.name
     = commit.author.email
-  h4=commit.message
+  h5=commit.sha
+  .stats
+    div = "#{ commit.stats.additions } additions"
+    div = "#{ commit.stats.deletions } deletions"
   ul.diff-names
     - commit.diffs.each do |diff|
       li
-        a
-          = diff.a_path
+        - if diff.deleted_file
+          a.deleted
+            = diff.a_path
+        - elsif diff.renamed_file
+          a.renamed
+            = "#{ diff.a_path } -> #{ diff.b_path }"
+        -elsif diff.new_file
+          a.new_file
+            = diff.a_path
+        -else
+          a.changed
+            = diff.a_path
   ul.diffs
     - commit.diffs.each do |diff|
       li
