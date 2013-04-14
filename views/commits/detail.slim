@@ -7,23 +7,4 @@
   .stats
     div = "#{ commit.stats.additions } additions"
     div = "#{ commit.stats.deletions } deletions"
-  ul.diff-names
-    - commit.diffs.each do |diff|
-      li
-        - if diff.deleted_file
-          a.deleted
-            = diff.a_path
-        - elsif diff.renamed_file
-          a.renamed
-            = "#{ diff.a_path } -> #{ diff.b_path }"
-        -elsif diff.new_file
-          a.new_file
-            = diff.a_path
-        -else
-          a.changed
-            = diff.a_path
-  ul.diffs
-    - commit.diffs.each do |diff|
-      li
-        = diff.diff
-
+  == slim :'diffs/list', :locals => {diffs: commit.diffs}, :layout => false

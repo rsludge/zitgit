@@ -1,0 +1,39 @@
+ul.diff-names
+  - diffs.each do |diff|
+    li
+      - if diff.deleted_file
+        a.deleted
+          = diff.a_path
+      - elsif diff.renamed_file
+        a.renamed
+          = "#{ diff.a_path } -> #{ diff.b_path }"
+      -elsif diff.new_file
+        a.new_file
+          = diff.a_path
+      -else
+        a.changed
+          = diff.a_path
+ul.diffs
+  - diffs.each do |diff|
+    li
+      - diff.diff.lines.each do |line|
+        - if line.match /^\-\-\- a/
+          .diff-first-line.diff-a
+            = line
+        - elsif line.match /^\+\+\+ b/
+          .diff-first-line.diff-b
+            = line
+        - elsif line.match /^@@ -/
+          .diff-summ-line
+            = line
+        - elsif line[0] == '+'
+          .diff-added-line
+            = line
+        - elsif line[0] == '-'
+          .diff-removed-line
+            = line
+        - else
+          .diff-line
+            = line
+
+
