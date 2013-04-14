@@ -6,3 +6,8 @@ gem "grit", '~> 2.5.0', git: 'https://github.com/gitlabhq/grit.git', ref: '42297
 gem 'slim'
 gem 'compass'
 gem 'zurb-foundation', '=3.2.5'
+
+group :develop do
+  gem 'rb-readline'
+  gem 'pry'
+end
