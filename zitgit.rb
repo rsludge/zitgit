@@ -1,3 +1,5 @@
+require 'bundler'
+Bundler.setup
 require 'sinatra/base'
 require 'grit'
 require 'slim'
