@@ -26,11 +26,20 @@ table{
 }
 .diff-names{
     list-style-type: none;
+    li{
+        .new_file{
+            color: green;
+        }
+        .deleted{
+            color: red;
+        }
+    }
 }
 .diffs{
     list-style-type: none;
     li{
         border-bottom: solid black 1px;
+        overflow: hidden;        
     }
 }
 .hidden{
