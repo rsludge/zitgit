@@ -10,6 +10,7 @@ require 'compass'
 module Zitgit
   class Zitgit < Sinatra::Base
     configure do
+      set :root, File.expand_path('..', File.dirname(__FILE__))
       set :scss, Compass.sass_engine_options
       set :views, ['views', 'scss']
     end
@@ -21,7 +22,7 @@ module Zitgit
     end
 
     get '/' do
-      repo = Grit::Repo.new('/home/2_2_28/site_htc_meetup')
+      repo = Grit::Repo.new('')
       current_branch = Grit::Head.current(repo)
       commits = repo.commits(current_branch.name, 200)
       repo_name = File.basename(repo.working_dir)

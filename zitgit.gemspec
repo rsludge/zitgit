@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Zitgit::VERSION
   spec.authors       = ["Oleg Potapov"]
   spec.email         = ["oleg0potapov@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Simple sinatra-based web-interface to view git repository history}
+  spec.summary       = %q{Simple sinatra-based web-interface to view git repository history}
   spec.homepage      = ""
   spec.license       = "MIT"
 
