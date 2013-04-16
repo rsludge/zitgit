@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'zitgit'
+Zitgit::Zitgit.run!
