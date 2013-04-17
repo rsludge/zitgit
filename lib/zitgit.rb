@@ -1,6 +1,8 @@
 require_relative "zitgit/version"
 require 'bundler'
-Bundler.setup
+Dir.chdir(File.dirname(__FILE__)) do
+  Bundler.setup
+end
 require 'sinatra/base'
 require 'grit'
 require 'slim'
@@ -17,7 +19,10 @@ module Zitgit
 
     helpers do
       def find_template(views, name, engine, &block)
-        views.each { |v| super(v, name, engine, &block) }
+        views.each do |v|
+          view_name = File.join(settings.root, v)
+          super(view_name, name, engine, &block) 
+        end
       end
     end
 
