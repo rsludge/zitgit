@@ -57,6 +57,9 @@ table{
     li{
         border-bottom: solid black 1px;
         overflow: hidden;        
+        div{
+            white-space: pre;
+        }
         .diff-added-line{
             color: green;            
             background: #50E170;
