@@ -24,6 +24,11 @@ module Zitgit
           super(view_name, name, engine, &block) 
         end
       end
+
+      def heads(commit)
+        repo = Grit::Repo.new('.')
+        repo.heads.select{|head| head.commit.id == commit.id}
+      end
     end
 
     get '/' do

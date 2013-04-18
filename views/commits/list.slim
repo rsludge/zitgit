@@ -1,12 +1,16 @@
 table.twelve
     thead
       tr
+        th.badges
         th.sha SHA
         th.author Author
         th.message Message
     tbody
-      - commits.each_with_index do |commit, i|
+      - commits.each_with_index do |commit, i|        
         tr class=('selected' if i==0)
+          td.badges
+            - heads(commit).each do |head|
+              = head.name
           td.sha
             = commit.sha
           td.author
