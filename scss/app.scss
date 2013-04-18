@@ -1,18 +1,24 @@
-@import "foundation";
 .top-bar {
     z-index: 5;
 }
-table{
+.row .history.columns{
+    padding: 0;
+}
+.commits-table{
     thead{
         background: #cbcbcb;
         tr,th{
-            border: 1px solid black;
+            border-bottom: 1px solid black;
         }
     }
     table-layout: fixed;
     border-collapse: collapse;
-    td{
-        overflow: hidden;
+    tr{
+        td{
+            overflow: hidden;
+            padding: 8px;
+            vertical-align: top;
+        }
     }
     .badges{
         width: 50px;

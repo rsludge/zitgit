@@ -1,10 +1,10 @@
 nav.top-bar
-  ul
+  ul.title-area
     li.name
       h1
         a
           = repo_name      
-  section
+  section.top-bar-section
     ul.left
       li.divider
       li.has-dropdown
@@ -15,8 +15,8 @@ nav.top-bar
             li
               a href="branch/#{branch.name}" = branch.name
       li.divider
-.main
-  .history.six.columns
+.main.row
+  .history.large-6.columns
     == slim :'commits/list', :locals => {commits: commits}, :layout => false
-  .show_commit.six.columns
+  .show_commit.large-6.columns
     == slim :'commits/detail', :locals => {commit: last_commit}, :layout => false
