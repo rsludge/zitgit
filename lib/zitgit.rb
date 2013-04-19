@@ -6,7 +6,6 @@ end
 require 'sinatra/base'
 require 'grit'
 require 'slim'
-require 'zurb-foundation'
 require 'compass'
 
 module Zitgit

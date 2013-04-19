@@ -1,10 +1,10 @@
 .commit
   h4=commit.message
-  h4
-    =' commit.author.name
-    = commit.author.email
-  h5=commit.sha
+  .commit_sha =commit.sha
+  .author_info
+    div = commit.author.name
+    div = commit.author.email
   .stats
-    div = "#{ commit.stats.additions } additions"
-    div = "#{ commit.stats.deletions } deletions"
+    div.additions = "#{ commit.stats.additions } additions"
+    div.deletions = "#{ commit.stats.deletions } deletions"
   == slim :'diffs/list', :locals => {diffs: commit.diffs}, :layout => false

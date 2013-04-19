@@ -51,8 +51,11 @@
     }
 }
 .diff-names{
+    clear: left;
+    padding-top: 14px;
     list-style-type: none;
     li{
+        margin-bottom: -8px;
         .new_file{
             color: green;
         }
@@ -62,23 +65,62 @@
     }
 }
 .diffs{
+    background: #fff;
     list-style-type: none;
     li{
-        border-bottom: solid black 1px;
-        overflow: hidden;        
+        border-bottom: solid #ddd 8px;
+        overflow-x: scroll;        
         div{
             white-space: pre;
         }
+        .diff-first-line{
+            font-weight: bold;
+            background: #A7B5FF;
+            border-bottom: 1px solid black;
+        }
+        .diff-summ-line{
+            background: #A7B5FF;
+            font-weight: bold;
+        }
         .diff-added-line{
-            color: green;            
-            background: #50E170;
+            color: #096707;            
+            background: #87f49f;
         }
         .diff-removed-line{
-            color: red;
-            background: #880132;
+            position: relative;
+            left: 0;
+            right: 0;
+            color: #742b2b;
+            background: #ffb1cb;
         }
     }
 }
 .hidden{
     display: none;
+}
+
+.show_commit{
+    .commit{
+        padding:8px;
+        background: #ddd;
+        border-radius: 16px;
+        .author_info{
+            width: 50%;
+            float: left;
+            font-weight: bold;
+        }
+        .commit_sha{
+            margin-bottom:14px;
+            margin-top: -14px;
+        }
+        .stats{
+            float: right;
+            .additions{
+                color: green;
+            }
+            .deletions{
+                color: red;
+            }
+        }
+    }
 }
