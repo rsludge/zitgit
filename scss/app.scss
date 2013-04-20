@@ -21,10 +21,15 @@
         }
     }
     .badges{
-        width: 50px;
-    }
-    .sha{
-        width: 100px;
+        width: 150px;
+        .branch_label{
+            font-size: 12px;
+            background: yellow;
+            border: 1px solid black;
+            border-radius: 8px;
+            padding: 2px;
+            float: left;
+        }
     }
     .author{
         width: 180px;
@@ -72,6 +77,7 @@
         overflow-x: scroll;        
         div{
             white-space: pre;
+            font-size: 14px;
         }
         .diff-first-line{
             font-weight: bold;

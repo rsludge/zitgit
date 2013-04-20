@@ -1,8 +1,7 @@
 table.large-12.commits-table
     thead
       tr
-        th.badges
-        th.sha SHA
+        th.badges SHA
         th.author Author
         th.message Message
     tbody
@@ -10,9 +9,10 @@ table.large-12.commits-table
         tr class=('selected' if i==0)
           td.badges
             - heads(commit).each do |head|
-              = head.name
-          td.sha
-            = commit.sha
+              .branch_label
+                = head.name
+            .sha
+              = commit.sha
           td.author
             =' commit.author.name
             = commit.author.email
