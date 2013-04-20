@@ -22,13 +22,22 @@
     }
     .badges{
         width: 150px;
-        .branch_label{
+        .ref_label{
+            margin-top: 2px 2px 0 0;
             font-size: 12px;
-            background: yellow;
             border: 1px solid black;
             border-radius: 8px;
-            padding: 2px;
+            padding: 0 2px;
             float: left;
+        }
+        .branch_label{
+            background: yellow;
+        }
+        .remote_label{
+            background: red;
+        }
+        .tag_label{
+            background: #e77a1c;
         }
     }
     .author{

@@ -28,6 +28,16 @@ module Zitgit
         repo = Grit::Repo.new('.')
         repo.heads.select{|head| head.commit.id == commit.id}
       end
+
+      def remotes(commit)
+        repo = Grit::Repo.new('.')
+        repo.remotes.select{|head| head.commit.id == commit.id}
+      end
+
+      def tags(commit)
+        repo = Grit::Repo.new('.')
+        repo.tags.select{|head| head.commit.id == commit.id}
+      end
     end
 
     get '/' do

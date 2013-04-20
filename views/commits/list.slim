@@ -9,7 +9,13 @@ table.large-12.commits-table
         tr class=('selected' if i==0)
           td.badges
             - heads(commit).each do |head|
-              .branch_label
+              .ref_label.branch_label
+                = head.name
+            - remotes(commit).each do |head|
+              .ref_label.remote_label
+                = head.name
+            - tags(commit).each do |head|
+              .ref_label.tag_label
                 = head.name
             .sha
               = commit.sha
