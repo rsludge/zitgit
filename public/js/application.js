@@ -7,8 +7,8 @@ var ChangeCommit = function($commit){
 }
 
 var UpdateDiffsWidth = function(){
-    $('.show_commit .diffs li div').each(function(index){
-        $(this).css('width', $(this).parent('li')[0].scrollWidth);
+    $('.show_commit .diffs li').each(function(index){
+        $(this).find('div').css('width', $(this)[0].scrollWidth);
     });
 }
 $(function(){
@@ -26,4 +26,6 @@ $(function(){
     $('.history').on('click', '.commits-table tr', function(e){
         ChangeCommit($(this).find('.commit'));
     })
+
+    UpdateDiffsWidth();
 });
