@@ -45,19 +45,20 @@ module Zitgit
       current_branch = Grit::Head.current(repo)
       commits = repo.commits(current_branch.name, 200)
       repo_name = File.basename(repo.working_dir)
-      branches = repo.heads    
+      @branches = repo.heads    
+      @remotes = repo.remotes
+      @tags = repo.tags
       slim :index, :locals => { 
         current_branch: current_branch, 
         commits: commits, 
         repo_name: repo_name,
-        branches: branches,
         last_commit: commits[0]
       }
     end
 
-    get "/branch/:branch_name" do |branch_name|
+    get "/ref/:ref_name" do |ref_name|
       repo = Grit::Repo.new('')
-      commits = repo.commits(branch_name, 200)
+      commits = repo.commits(ref_name, 200)
       slim :branch, :locals => { commits: commits }, :layout => false
     end
 

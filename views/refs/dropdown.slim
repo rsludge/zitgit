@@ -1,0 +1,3 @@
+- refs.each do |ref|
+  li
+    a href="ref/#{URI::encode(ref.name, '/')}" = ref.name

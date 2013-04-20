@@ -16,7 +16,8 @@ $(function(){
         e.preventDefault();
         var $link = $(this);
         $.get($link.attr('href'), function(data){
-            $('.current_branch').text($link.text());
+            $('.current_branch').text('');
+            $link.parents('.has-dropdown').find('.current_branch').text($link.text());
             $('.commits-table').replaceWith(data);            
             ChangeCommit($('.commits-table tbody tr:first .commit'));
         });

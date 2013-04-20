@@ -7,14 +7,27 @@ nav.top-bar
   section.top-bar-section
     ul.left
       li.divider
+      li
+        a Branches:
       li.has-dropdown
         a.active.current_branch
           = current_branch.name
-        ul.dropdown
-          - branches.each do |branch|
-            li
-              a href="branch/#{branch.name}" = branch.name
+        ul.dropdown.branches
+          == slim :'refs/dropdown', :locals => {refs: @branches}, :layout => false
       li.divider
+      li
+        a Remotes:
+      li.has-dropdown
+        a.active.current_branch
+        ul.dropdown.remotes
+          == slim :'refs/dropdown', :locals => {refs: @remotes}, :layout => false
+      li.divider
+      li
+        a Tags:
+      li.has-dropdown
+        a.active.current_branch
+        ul.dropdown.tags
+          == slim :'refs/dropdown', :locals => {refs: @tags}, :layout => false
 .main.row
   .history.large-6.columns
     == slim :'commits/list', :locals => {commits: commits}, :layout => false
