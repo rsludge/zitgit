@@ -27,4 +27,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'guard'
   spec.add_development_dependency 'guard-sass'
+  spec.add_development_dependency 'guard-coffeescript'
+  spec.add_development_dependency 'therubyracer'
 end
