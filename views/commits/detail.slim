@@ -1,5 +1,6 @@
 .commit
   h4=commit.message
+  == slim :'commits/labels', :locals => {commit: commit}, :layout => false
   .commit_sha =commit.sha
   .author_info
     div = commit.author.name
@@ -7,4 +8,5 @@
   .stats
     div.additions = "#{ commit.stats.additions } additions"
     div.deletions = "#{ commit.stats.deletions } deletions"
+
   == slim :'diffs/list', :locals => {diffs: commit.diffs}, :layout => false

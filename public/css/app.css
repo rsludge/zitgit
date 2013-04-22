@@ -3956,6 +3956,22 @@ a.th {
 .row .history.columns {
   padding: 0; }
 
+.ref_label {
+  margin: 2px 2px 0 0;
+  border: 1px solid black;
+  border-radius: 12px;
+  padding: 2px 4px;
+  float: left; }
+
+.branch_label {
+  background: yellow; }
+
+.remote_label {
+  background: red; }
+
+.tag_label {
+  background: #e77a1c; }
+
 .commits-table {
   table-layout: fixed;
   border-collapse: collapse; }
@@ -3970,29 +3986,20 @@ a.th {
   .commits-table .badges {
     width: 150px; }
     .commits-table .badges .ref_label {
-      margin-top: 2px 2px 0 0;
       font-size: 12px;
-      border: 1px solid black;
       border-radius: 8px;
-      padding: 0 2px;
-      float: left; }
-    .commits-table .badges .branch_label {
-      background: yellow; }
-    .commits-table .badges .remote_label {
-      background: red; }
-    .commits-table .badges .tag_label {
-      background: #e77a1c; }
+      padding: 0 2px; }
   .commits-table .author {
     width: 180px; }
   .commits-table tbody tr.selected {
-    background: #77beff; }
+    background: #c3e2ff; }
     .commits-table tbody tr.selected td {
-      border-bottom: 2px solid #744096;
-      border-top: 2px solid #744096; }
+      border-bottom: 2px solid #78c3ff;
+      border-top: 2px solid #78c3ff; }
       .commits-table tbody tr.selected td:first-child {
-        border-left: 2px solid #744096; }
+        border-left: 2px solid #78c3ff; }
       .commits-table tbody tr.selected td:last-child {
-        border-right: 2px solid #744096; }
+        border-right: 2px solid #78c3ff; }
 
 .commit h2 {
   overflow: hidden; }
@@ -4047,7 +4054,8 @@ a.th {
     font-weight: bold; }
   .show_commit .commit .commit_sha {
     margin-bottom: 14px;
-    margin-top: -14px; }
+    margin-top: -14px;
+    clear: left; }
   .show_commit .commit .stats {
     float: right; }
     .show_commit .commit .stats .additions {

@@ -6,6 +6,22 @@
 .row .history.columns{
     padding: 0;
 }
+.ref_label{
+    margin: 2px 2px 0 0;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding: 2px 4px;
+    float: left;
+}
+.branch_label{
+    background: yellow;
+}
+.remote_label{
+    background: red;
+}
+.tag_label{
+    background: #e77a1c;
+}
 .commits-table{
     thead{
         background: #cbcbcb;
@@ -25,21 +41,9 @@
     .badges{
         width: 150px;
         .ref_label{
-            margin-top: 2px 2px 0 0;
             font-size: 12px;
-            border: 1px solid black;
             border-radius: 8px;
             padding: 0 2px;
-            float: left;
-        }
-        .branch_label{
-            background: yellow;
-        }
-        .remote_label{
-            background: red;
-        }
-        .tag_label{
-            background: #e77a1c;
         }
     }
     .author{
@@ -47,15 +51,15 @@
     }
     tbody{
         tr.selected{
-            background: #77beff;
+            background: #c3e2ff;
             td{
-                border-bottom: 2px solid #744096;
-                border-top: 2px solid #744096;
+                border-bottom: 2px solid #78c3ff;
+                border-top: 2px solid #78c3ff;
                 &:first-child{
-                    border-left: 2px solid #744096;
+                    border-left: 2px solid #78c3ff;
                 }
                 &:last-child{
-                    border-right: 2px solid #744096;
+                    border-right: 2px solid #78c3ff;
                 }
             }
         }
@@ -129,6 +133,7 @@
         .commit_sha{
             margin-bottom:14px;
             margin-top: -14px;
+            clear: left;
         }
         .stats{
             float: right;

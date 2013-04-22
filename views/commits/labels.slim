@@ -1,0 +1,9 @@
+- heads(commit).each do |head|
+  .ref_label.branch_label
+    = head.name
+- remotes(commit).each do |head|
+  .ref_label.remote_label
+    = head.name
+- tags(commit).each do |head|
+  .ref_label.tag_label
+    = head.name
