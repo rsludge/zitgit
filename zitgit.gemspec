@@ -20,10 +20,11 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'sinatra'
   spec.add_dependency 'slim'
-  spec.add_dependency 'compass'
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
   spec.add_development_dependency 'rb-readline'
   spec.add_development_dependency 'pry'
+  spec.add_development_dependency 'guard'
+  spec.add_development_dependency 'guard-sass'
 end

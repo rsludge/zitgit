@@ -6,24 +6,14 @@ end
 require 'sinatra/base'
 require 'grit'
 require 'slim'
-require 'compass'
 
 module Zitgit
   class Zitgit < Sinatra::Base
     configure do
       set :root, File.expand_path('..', File.dirname(__FILE__))
-      set :scss, Compass.sass_engine_options
-      set :views, ['views', 'scss']
     end
 
     helpers do
-      def find_template(views, name, engine, &block)
-        views.each do |v|
-          view_name = File.join(settings.root, v)
-          super(view_name, name, engine, &block) 
-        end
-      end
-
       def heads(commit)
         repo = Grit::Repo.new('.')
         repo.heads.select{|head| head.commit.id == commit.id}
@@ -60,11 +50,6 @@ module Zitgit
       repo = Grit::Repo.new('')
       commits = repo.commits(ref_name, 200)
       slim :branch, :locals => { commits: commits }, :layout => false
-    end
-
-    get "/stylesheets/*.css" do |path|
-      content_type "text/css", charset: "utf-8"
-      scss :"#{path}"
     end
 
     run! if app_file == $0
