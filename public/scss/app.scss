@@ -4,7 +4,7 @@
     z-index: 6;
 }
 .row .history.columns{
-    padding: 0;
+    padding: 0 0 0 15px;
 }
 .ref_label{
     margin: 2px 2px 0 0;
@@ -56,10 +56,10 @@
                 border-bottom: 2px solid #78c3ff;
                 border-top: 2px solid #78c3ff;
                 &:first-child{
-                    border-left: 2px solid #78c3ff;
+                    border-left: 1px solid #78c3ff;
                 }
                 &:last-child{
-                    border-right: 2px solid #78c3ff;
+                    border-right: 1px solid #78c3ff;
                 }
             }
         }
@@ -126,7 +126,7 @@
         background: #ddd;
         border-radius: 16px;
         .author_info{
-            width: 50%;
+            /*width: 50%;*/
             float: left;
             font-weight: bold;
         }

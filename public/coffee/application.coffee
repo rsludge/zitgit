@@ -4,6 +4,13 @@ ChangeCommit = ($commit)->
     $commit.parents('tr').addClass 'selected'
     $('.show_commit').html $target_commit
     UpdateDiffsWidth()
+
+SetHeight = ->
+  commit_offset = $('.show_commit').offset().top
+  $('.show_commit').height(window.innerHeight - commit_offset)
+  history_offset = $('.history').offset().top
+  $('.history').height(window.innerHeight - history_offset)
+
     
 UpdateDiffsWidth = ->
     $('.show_commit .diffs li').each (index)->
@@ -30,3 +37,18 @@ $ ->
     ChangeCommit $(this).find('.commit')
 
   UpdateDiffsWidth()
+  SetHeight()
+
+  $(window).resize ->
+    SetHeight()
+
+  $('.show_commit').niceScroll({
+    cursorcolor: '#ccc',
+    cursorwidth: 14
+  })
+  $('.history').niceScroll({
+    cursorcolor: '#ccc',
+    cursorwidth: 14,
+    railalign: 'left',
+    horizrailenabled: false
+  })

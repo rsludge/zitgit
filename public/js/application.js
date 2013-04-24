@@ -1,5 +1,5 @@
 (function() {
-  var ChangeCommit, UpdateDiffsWidth;
+  var ChangeCommit, SetHeight, UpdateDiffsWidth;
 
   ChangeCommit = function($commit) {
     var $target_commit;
@@ -9,6 +9,15 @@
     $commit.parents('tr').addClass('selected');
     $('.show_commit').html($target_commit);
     return UpdateDiffsWidth();
+  };
+
+  SetHeight = function() {
+    var commit_offset, history_offset;
+
+    commit_offset = $('.show_commit').offset().top;
+    $('.show_commit').height(window.innerHeight - commit_offset);
+    history_offset = $('.history').offset().top;
+    return $('.history').height(window.innerHeight - history_offset);
   };
 
   UpdateDiffsWidth = function() {
@@ -40,7 +49,21 @@
     $('.history').on('click', '.commits-table tr', function(e) {
       return ChangeCommit($(this).find('.commit'));
     });
-    return UpdateDiffsWidth();
+    UpdateDiffsWidth();
+    SetHeight();
+    $(window).resize(function() {
+      return SetHeight();
+    });
+    $('.show_commit').niceScroll({
+      cursorcolor: '#ccc',
+      cursorwidth: 14
+    });
+    return $('.history').niceScroll({
+      cursorcolor: '#ccc',
+      cursorwidth: 14,
+      railalign: 'left',
+      horizrailenabled: false
+    });
   });
 
 }).call(this);
