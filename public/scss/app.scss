@@ -146,3 +146,10 @@
         }
     }
 }
+.loader{
+    margin: 0 auto;
+    width: 64px;
+    height: 64px;
+    background: url('/images/loader.gif') no-repeat;
+    display: none;
+}

@@ -28,6 +28,7 @@ nav.top-bar
         a.active.current_branch
         ul.dropdown.tags
           == slim :'refs/dropdown', :locals => {refs: @tags}, :layout => false
+.loader
 .main.row
   .history.large-6.columns
     == slim :'commits/list', :locals => {commits: commits}, :layout => false
