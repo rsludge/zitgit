@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Oleg Potapov"]
   spec.email         = ["oleg0potapov@gmail.com"]
   spec.description   = %q{Simple sinatra-based web-interface to view git repository history}
-  spec.summary       = %q{Simple sinatra-based web-interface to view git repository history}
+  spec.summary       = %q{Git repository viewer}
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -18,15 +18,13 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency 'sinatra'
-  spec.add_dependency 'slim'
+  spec.add_dependency 'sinatra', "~> 1.4"
+  spec.add_dependency 'slim', "~> 1.3"
 
   spec.add_development_dependency "bundler", "~> 1.3"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency 'rb-readline'
-  spec.add_development_dependency 'pry'
-  spec.add_development_dependency 'guard'
-  spec.add_development_dependency 'guard-sass'
-  spec.add_development_dependency 'guard-coffeescript'
-  spec.add_development_dependency 'therubyracer'
+  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency 'guard', "~> 1.8"
+  spec.add_development_dependency 'guard-sass', "~> 1.0"
+  spec.add_development_dependency 'guard-coffeescript', "~> 1.3"
+  spec.add_development_dependency 'therubyracer', "~> 0.11"
 end
