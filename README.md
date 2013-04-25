@@ -1,29 +1,20 @@
 # Zitgit
 
-TODO: Write a gem description
+Simple sinatra-based web-interface to view git repository history
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
+    gem "grit", '~> 2.5.0', git: 'https://github.com/gitlabhq/grit.git', ref: '42297cdcee16284d2e4eff23d41377f52fc28b9d'
     gem 'zitgit'
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
-Or install it yourself as:
-
-    $ gem install zitgit
+You can not just run gem install zitgit because it has dependencies from GitHub
 
 ## Usage
 
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+Just run `zitgit` from git repo folder
