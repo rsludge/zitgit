@@ -52,3 +52,7 @@ $ ->
     railalign: 'left',
     horizrailenabled: false
   })
+  $('.diffs li').niceScroll({
+    cursorcolor: '#ccc',
+    cursorwidth: 14,
+  })

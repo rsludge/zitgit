@@ -58,11 +58,15 @@
       cursorcolor: '#ccc',
       cursorwidth: 14
     });
-    return $('.history').niceScroll({
+    $('.history').niceScroll({
       cursorcolor: '#ccc',
       cursorwidth: 14,
       railalign: 'left',
       horizrailenabled: false
+    });
+    return $('.diffs li').niceScroll({
+      cursorcolor: '#ccc',
+      cursorwidth: 14
     });
   });
 
