@@ -3,7 +3,7 @@ nav.top-bar
     li.name
       h1
         a
-          = repo_name      
+          = @repo_name      
   section.top-bar-section
     ul.left
       li.divider
@@ -11,7 +11,7 @@ nav.top-bar
         a Branches:
       li.has-dropdown
         a.active.current_branch
-          = current_branch.name
+          = @current_branch.name
         ul.dropdown.branches
           == slim :'refs/dropdown', :locals => {refs: @branches}, :layout => false
       li.divider
@@ -31,6 +31,6 @@ nav.top-bar
 .loader
 .main.row
   .history.large-6.columns
-    == slim :'commits/list', :locals => {commits: commits}, :layout => false
+    == slim :'commits/list', :locals => {commits: @commits}, :layout => false
   .show_commit.large-6.columns
-    == slim :'commits/detail', :locals => {commit: last_commit}, :layout => false
+    == slim :'commits/detail', :locals => {commit: @last_commit}, :layout => false
