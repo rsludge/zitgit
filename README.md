@@ -17,4 +17,6 @@ You can not just run gem install zitgit because it has dependencies from GitHub
 
 ## Usage
 
-Just run `zitgit` from git repo folder
+Just run `zitgit` from git repo folder and view your repository history on http://localhost:5555
+
+Or you can run it on different port with `zitgit -p <port_number>`
