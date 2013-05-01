@@ -1,4 +1,14 @@
 #!/usr/bin/env ruby
 
 require 'zitgit'
-Zitgit::Zitgit.run!
+require 'optparse'
+
+port = 5555
+
+OptionParser.new do |opts|
+  opts.on("-p PORT", "--port PORT", Integer) do |v|
+    port = v
+  end
+end.parse!
+
+Zitgit::Zitgit.run!(:port => port)
