@@ -49,6 +49,11 @@
     .author{
         width: 180px;
     }
+    .message{
+        div{
+            max-height: 56px;
+        }
+    }
     tbody{
         tr.selected{
             background: #c3e2ff;

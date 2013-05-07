@@ -3991,6 +3991,8 @@ a.th {
       padding: 0 2px; }
   .commits-table .author {
     width: 180px; }
+  .commits-table .message div {
+    max-height: 56px; }
   .commits-table tbody tr.selected {
     background: #c3e2ff; }
     .commits-table tbody tr.selected td {

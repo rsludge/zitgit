@@ -17,6 +17,7 @@ table.large-12.commits-table
           td.hidden
             == slim :'commits/detail', :locals => {commit: commit}, :layout => false
           td.message
-            = commit.message
+            div
+              = commit.message
 
 
