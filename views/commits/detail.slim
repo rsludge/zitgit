@@ -1,5 +1,5 @@
 .commit
-  h4=commit.message
+  h4=strip_message(commit.message, 120)
   == slim :'commits/labels', :locals => {commit: commit}, :layout => false
   .commit_sha =commit.sha
   .author_info

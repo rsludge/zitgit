@@ -28,6 +28,10 @@ module Zitgit
         repo = Grit::Repo.new('.')
         repo.tags.select{|head| head.commit.id == commit.id}
       end
+
+      def strip_message(text, length)
+        text.length > length ? text[0, length] + '...' : text
+      end
     end
 
     get '/' do
