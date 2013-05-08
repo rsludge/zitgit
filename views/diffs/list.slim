@@ -23,6 +23,7 @@ ul.diffs
         - elsif line.match /^\+\+\+ b/
           .diff-first-line.diff-b
             = line
+        - elsif line.match /^\+\+\+ \/dev\/null/ or line.match /^\-\-\- \/dev\/null/
         - elsif line.match /^@@ -/
           .diff-summ-line
             = line
