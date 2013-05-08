@@ -4067,6 +4067,11 @@ a.th {
       color: green; }
     .show_commit .commit .stats .deletions {
       color: red; }
+    .show_commit .commit .stats .merge_commit {
+      font-weight: bold;
+      position: relative;
+      top: 8px;
+      color: #0300ff; }
 
 .loader {
   margin: 0 auto;

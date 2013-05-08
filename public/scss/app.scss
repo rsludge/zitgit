@@ -151,6 +151,12 @@
             .deletions{
                 color: red;
             }
+            .merge_commit{
+                font-weight: bold;
+                position: relative;
+                top: 8px;
+                color: #0300ff;
+            }
         }
     }
 }

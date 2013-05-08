@@ -32,6 +32,10 @@ module Zitgit
       def strip_message(text, length)
         text.length > length ? text[0, length] + '...' : text
       end
+
+      def merge_commit?(commit)
+        commit.parents.count > 1
+      end
     end
 
     get '/' do

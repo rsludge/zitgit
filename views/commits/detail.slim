@@ -6,7 +6,10 @@
     div = commit.author.name
     div = commit.author.email
   .stats
-    div.additions = "#{ commit.stats.additions } additions"
-    div.deletions = "#{ commit.stats.deletions } deletions"
+    - if merge_commit?(commit)
+      div.merge_commit merge
+    -else
+      div.additions = "#{ commit.stats.additions } additions"
+      div.deletions = "#{ commit.stats.deletions } deletions"
 
   == slim :'diffs/list', :locals => {diffs: commit.diffs}, :layout => false
