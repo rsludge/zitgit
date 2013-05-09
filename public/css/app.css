@@ -3962,6 +3962,8 @@ a.th {
   border-radius: 12px;
   padding: 2px 4px;
   float: left; }
+  .ref_label a {
+    color: #000; }
 
 .branch_label {
   background: yellow; }

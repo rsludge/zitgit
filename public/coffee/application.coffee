@@ -26,26 +26,38 @@ SelectDiff = ->
       $('.show_commit .diffs li').addClass('hidden')
       $('.show_commit .diffs li:eq('+index+')').removeClass('hidden')
 
-$ ->
+ChangeBranch = ($link)->
+  timeout = setTimeout ->
+    $('.loader').show()
+    $('.main').hide()
+  , 1500
+  $.get $link.attr('href'), (data)->
+    clearTimeout(timeout)
+    $('.loader').hide()
+    $('.current_branch').text ''
+    if $link.parents('.ref_label').length
+      list_class = $link.parents('.ref_label').attr('data-dropdown-name')
+      $('.dropdown.'+list_class+'').parent('.has-dropdown').find('.current_branch').text $link.text()
+    else
+      $link.parents('.has-dropdown').find('.current_branch').text $link.text()
+    $('.commits-table').replaceWith data
+    $('.main').show()
+    ChangeCommit $('.commits-table tbody tr:first .commit')
+
+SwitchBranch = ->
   $('.top-bar .dropdown li a').on 'click', (e) ->
     e.preventDefault()
-    $link = $(this)
-    timeout = setTimeout ->
-      $('.loader').show()
-      $('.main').hide()
-    , 1500
-    $.get $link.attr('href'), (data)->
-      clearTimeout(timeout)
-      $('.loader').hide()
-      $('.current_branch').text ''
-      $link.parents('.has-dropdown').find('.current_branch').text $link.text()
-      $('.commits-table').replaceWith data
-      $('.main').show()
-      ChangeCommit $('.commits-table tbody tr:first .commit')
+    ChangeBranch($(this))
+  $('body').on 'click', '.ref_label a', (e) ->
+    e.preventDefault()
+    ChangeBranch($(this))
+
+$ ->
 
   $('.history').on 'click', '.commits-table tr', (e)->
     ChangeCommit $(this).find('.commit')
 
+  SwitchBranch()
   UpdateDiffsWidth()
   SetHeight()
   SelectDiff()

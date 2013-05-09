@@ -1,5 +1,5 @@
 (function() {
-  var ChangeCommit, SelectDiff, SetHeight, UpdateDiffsWidth;
+  var ChangeBranch, ChangeCommit, SelectDiff, SetHeight, SwitchBranch, UpdateDiffsWidth;
 
   ChangeCommit = function($commit) {
     var $target_commit;
@@ -42,29 +42,47 @@
     });
   };
 
-  $(function() {
-    $('.top-bar .dropdown li a').on('click', function(e) {
-      var $link, timeout;
+  ChangeBranch = function($link) {
+    var timeout;
 
-      e.preventDefault();
-      $link = $(this);
-      timeout = setTimeout(function() {
-        $('.loader').show();
-        return $('.main').hide();
-      }, 1500);
-      return $.get($link.attr('href'), function(data) {
-        clearTimeout(timeout);
-        $('.loader').hide();
-        $('.current_branch').text('');
+    timeout = setTimeout(function() {
+      $('.loader').show();
+      return $('.main').hide();
+    }, 1500);
+    return $.get($link.attr('href'), function(data) {
+      var list_class;
+
+      clearTimeout(timeout);
+      $('.loader').hide();
+      $('.current_branch').text('');
+      if ($link.parents('.ref_label').length) {
+        list_class = $link.parents('.ref_label').attr('data-dropdown-name');
+        $('.dropdown.' + list_class + '').parent('.has-dropdown').find('.current_branch').text($link.text());
+      } else {
         $link.parents('.has-dropdown').find('.current_branch').text($link.text());
-        $('.commits-table').replaceWith(data);
-        $('.main').show();
-        return ChangeCommit($('.commits-table tbody tr:first .commit'));
-      });
+      }
+      $('.commits-table').replaceWith(data);
+      $('.main').show();
+      return ChangeCommit($('.commits-table tbody tr:first .commit'));
     });
+  };
+
+  SwitchBranch = function() {
+    $('.top-bar .dropdown li a').on('click', function(e) {
+      e.preventDefault();
+      return ChangeBranch($(this));
+    });
+    return $('body').on('click', '.ref_label a', function(e) {
+      e.preventDefault();
+      return ChangeBranch($(this));
+    });
+  };
+
+  $(function() {
     $('.history').on('click', '.commits-table tr', function(e) {
       return ChangeCommit($(this).find('.commit'));
     });
+    SwitchBranch();
     UpdateDiffsWidth();
     SetHeight();
     SelectDiff();
