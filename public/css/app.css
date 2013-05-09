@@ -4014,11 +4014,13 @@ a.th {
   padding-top: 14px;
   list-style-type: none; }
   .diff-names li {
-    margin-bottom: -8px; }
+    margin-bottom: -4px; }
     .diff-names li .new_file {
       color: green; }
     .diff-names li .deleted {
       color: red; }
+  .diff-names .selected {
+    background: #a7d5ff; }
 
 .diffs {
   background: #fff;

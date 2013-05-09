@@ -83,13 +83,16 @@
     padding-top: 14px;
     list-style-type: none;
     li{
-        margin-bottom: -8px;
+        margin-bottom: -4px;
         .new_file{
             color: green;
         }
         .deleted{
             color: red;
         }
+    }
+    .selected{
+        background: #a7d5ff;
     }
 }
 .diffs{

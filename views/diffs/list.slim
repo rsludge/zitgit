@@ -1,4 +1,9 @@
 ul.diff-names
+  - if diffs.count > 1
+    li.all.selected All files
+  -else
+    li.all.selected.hidden All files
+
   - diffs.each do |diff|
     li
       - if diff.deleted_file

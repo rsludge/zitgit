@@ -1,5 +1,5 @@
 (function() {
-  var ChangeCommit, SetHeight, UpdateDiffsWidth;
+  var ChangeCommit, SelectDiff, SetHeight, UpdateDiffsWidth;
 
   ChangeCommit = function($commit) {
     var $target_commit;
@@ -23,6 +23,22 @@
   UpdateDiffsWidth = function() {
     return $('.show_commit .diffs li').each(function(index) {
       return $(this).find('div').css('width', $(this)[0].scrollWidth);
+    });
+  };
+
+  SelectDiff = function() {
+    return $('.show_commit').on('click', '.diff-names li', function(e) {
+      var index;
+
+      $('.show_commit .diff-names .selected').removeClass('selected');
+      $(this).addClass('selected');
+      if ($(this).hasClass('all')) {
+        return $('.show_commit .diffs li').removeClass('hidden');
+      } else {
+        index = $(this).index() - 1;
+        $('.show_commit .diffs li').addClass('hidden');
+        return $('.show_commit .diffs li:eq(' + index + ')').removeClass('hidden');
+      }
     });
   };
 
@@ -51,6 +67,7 @@
     });
     UpdateDiffsWidth();
     SetHeight();
+    SelectDiff();
     $(window).resize(function() {
       return SetHeight();
     });

@@ -1,20 +1,30 @@
 ChangeCommit = ($commit)->
-    $target_commit = $commit.clone()
-    $('.commits-table tr.selected').removeClass 'selected'
-    $commit.parents('tr').addClass 'selected'
-    $('.show_commit').html $target_commit
-    UpdateDiffsWidth()
+  $target_commit = $commit.clone()
+  $('.commits-table tr.selected').removeClass 'selected'
+  $commit.parents('tr').addClass 'selected'
+  $('.show_commit').html $target_commit
+  UpdateDiffsWidth()
 
 SetHeight = ->
   commit_offset = $('.show_commit').offset().top
   $('.show_commit').height(window.innerHeight - commit_offset)
   history_offset = $('.history').offset().top
   $('.history').height(window.innerHeight - history_offset)
-
     
 UpdateDiffsWidth = ->
-    $('.show_commit .diffs li').each (index)->
-        $(this).find('div').css('width', $(this)[0].scrollWidth)
+  $('.show_commit .diffs li').each (index)->
+    $(this).find('div').css('width', $(this)[0].scrollWidth)
+
+SelectDiff = ->
+  $('.show_commit').on 'click', '.diff-names li', (e)->
+    $('.show_commit .diff-names .selected').removeClass('selected')
+    $(this).addClass('selected')
+    if $(this).hasClass('all')
+      $('.show_commit .diffs li').removeClass('hidden')
+    else
+      index = $(this).index() - 1
+      $('.show_commit .diffs li').addClass('hidden')
+      $('.show_commit .diffs li:eq('+index+')').removeClass('hidden')
 
 $ ->
   $('.top-bar .dropdown li a').on 'click', (e) ->
@@ -38,6 +48,7 @@ $ ->
 
   UpdateDiffsWidth()
   SetHeight()
+  SelectDiff()
 
   $(window).resize ->
     SetHeight()
