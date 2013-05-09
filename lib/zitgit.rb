@@ -36,6 +36,10 @@ module Zitgit
       def merge_commit?(commit)
         commit.parents.count > 1
       end
+
+      def is_head_ref(ref)
+        ref.name.split('/').index('HEAD')
+      end
     end
 
     get '/' do

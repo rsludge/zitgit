@@ -1,3 +1,4 @@
 - refs.each do |ref|
   li
-    a href="ref/#{URI::encode(ref.name, '/')}" = ref.name
+    - unless is_head_ref(ref)
+      a href="ref/#{URI::encode(ref.name, '/')}" = ref.name
