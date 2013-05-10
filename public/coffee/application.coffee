@@ -53,7 +53,6 @@ SwitchBranch = ->
     ChangeBranch($(this))
 
 $ ->
-
   $('.history').on 'click', '.commits-table tr', (e)->
     ChangeCommit $(this).find('.commit')
 
@@ -75,7 +74,7 @@ $ ->
     railalign: 'left',
     horizrailenabled: false
   })
-  $('.diffs li').niceScroll({
+  $('.show_commit .diffs li').niceScroll({
     cursorcolor: '#ccc',
     cursorwidth: 14,
   })

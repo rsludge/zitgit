@@ -99,7 +99,7 @@
       railalign: 'left',
       horizrailenabled: false
     });
-    return $('.diffs li').niceScroll({
+    return $('.show_commit .diffs li').niceScroll({
       cursorcolor: '#ccc',
       cursorwidth: 14
     });
