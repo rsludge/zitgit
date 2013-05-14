@@ -2,6 +2,12 @@
 
 .top-bar {
     z-index: 6;
+    .refresh{
+        img{
+            position: relative;
+            top: 8px;
+        }
+    }
 }
 .main .history.columns{
     padding: 0 0 0 15px;

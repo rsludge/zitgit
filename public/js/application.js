@@ -1,5 +1,5 @@
 (function() {
-  var ChangeBranch, ChangeCommit, SelectDiff, SetHeight, SwitchBranch, UpdateDiffsWidth;
+  var ChangeBranch, ChangeCommit, RefreshContent, SelectDiff, SetHeight, SwitchBranch, UpdateDiffsWidth;
 
   ChangeCommit = function($commit) {
     var $target_commit;
@@ -8,6 +8,10 @@
     $('.commits-table tr.selected').removeClass('selected');
     $commit.parents('tr').addClass('selected');
     $('.show_commit').html($target_commit);
+    $('.show_commit .diffs li').niceScroll({
+      cursorcolor: '#ccc',
+      cursorwidth: 14
+    });
     return UpdateDiffsWidth();
   };
 
@@ -78,9 +82,30 @@
     });
   };
 
+  RefreshContent = function() {
+    return $('.current_branch').each(function(index) {
+      var branch_name;
+
+      if ($(this).text() !== '') {
+        branch_name = $(this).text();
+        $(this).parent('.has-dropdown').find('.dropdown li a').each(function(index) {
+          if ($(this).text() === branch_name) {
+            ChangeBranch($(this));
+            return false;
+          }
+        });
+        return false;
+      }
+    });
+  };
+
   $(function() {
     $('.history').on('click', '.commits-table tr', function(e) {
       return ChangeCommit($(this).find('.commit'));
+    });
+    $('.refresh').on('click', function(e) {
+      e.preventDefault();
+      return RefreshContent();
     });
     SwitchBranch();
     SetHeight();

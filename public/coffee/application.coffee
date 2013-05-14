@@ -3,6 +3,10 @@ ChangeCommit = ($commit)->
   $('.commits-table tr.selected').removeClass 'selected'
   $commit.parents('tr').addClass 'selected'
   $('.show_commit').html $target_commit
+  $('.show_commit .diffs li').niceScroll({
+    cursorcolor: '#ccc',
+    cursorwidth: 14,
+  })
   UpdateDiffsWidth()
 
 SetHeight = ->
@@ -52,9 +56,22 @@ SwitchBranch = ->
     e.preventDefault()
     ChangeBranch($(this))
 
+RefreshContent = ->
+  $('.current_branch').each (index)->
+    if $(this).text() != ''
+      branch_name = $(this).text()
+      $(this).parent('.has-dropdown').find('.dropdown li a').each (index)->
+        if $(this).text() == branch_name
+          ChangeBranch($(this))
+          return false
+      return false
+
 $ ->
   $('.history').on 'click', '.commits-table tr', (e)->
     ChangeCommit $(this).find('.commit')
+  $('.refresh').on 'click', (e)->
+    e.preventDefault()
+    RefreshContent()
 
   SwitchBranch()
   SetHeight()
