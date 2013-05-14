@@ -83,7 +83,6 @@
       return ChangeCommit($(this).find('.commit'));
     });
     SwitchBranch();
-    UpdateDiffsWidth();
     SetHeight();
     SelectDiff();
     $(window).resize(function() {
@@ -99,10 +98,11 @@
       railalign: 'left',
       horizrailenabled: false
     });
-    return $('.show_commit .diffs li').niceScroll({
+    $('.show_commit .diffs li').niceScroll({
       cursorcolor: '#ccc',
       cursorwidth: 14
     });
+    return UpdateDiffsWidth();
   });
 
 }).call(this);

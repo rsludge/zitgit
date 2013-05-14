@@ -57,7 +57,6 @@ $ ->
     ChangeCommit $(this).find('.commit')
 
   SwitchBranch()
-  UpdateDiffsWidth()
   SetHeight()
   SelectDiff()
 
@@ -78,3 +77,4 @@ $ ->
     cursorcolor: '#ccc',
     cursorwidth: 14,
   })
+  UpdateDiffsWidth()

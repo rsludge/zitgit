@@ -29,7 +29,7 @@ nav.top-bar
         ul.dropdown.tags
           == slim :'refs/dropdown', :locals => {refs: @tags}, :layout => false
 .loader
-.main.row
+.main
   .history.large-6.columns
     == slim :'commits/list', :locals => {commits: @commits}, :layout => false
   .show_commit.large-6.columns

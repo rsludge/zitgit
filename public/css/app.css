@@ -3953,7 +3953,7 @@ a.th {
 .top-bar {
   z-index: 6; }
 
-.row .history.columns {
+.main .history.columns {
   padding: 0 0 0 15px; }
 
 .ref_label {
