@@ -51,6 +51,9 @@
             word-wrap: break-word;
             text-align: center;
         }
+        .sha{
+            font-size:10px;
+        }
     }
     .author{
         width: 180px;
@@ -146,8 +149,12 @@
         }
         .commit_sha{
             margin-bottom:14px;
-            margin-top: -14px;
             clear: left;
+            float: left;
+        }
+        .commit_date{
+            margin-bottom:14px;
+            float: right;
         }
         .stats{
             float: right;

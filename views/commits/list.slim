@@ -1,7 +1,7 @@
 table.large-12.commits-table
     thead
       tr
-        th.badges SHA
+        th.badges Info
         th.author Author
         th.message Message
     tbody
@@ -9,8 +9,8 @@ table.large-12.commits-table
         tr class=('selected' if i==0)
           td.badges
             == slim :'commits/labels', :locals => {commit: commit}, :layout => false
-            .sha
-              = commit.sha
+            .sha = commit.sha
+            .date = commit.date.strftime("%d.%m.%Y %H:%M")
           td.author
             =' commit.author.name
             = commit.author.email

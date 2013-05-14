@@ -3994,6 +3994,8 @@ a.th {
       max-width: 134px;
       word-wrap: break-word;
       text-align: center; }
+    .commits-table .badges .sha {
+      font-size: 10px; }
   .commits-table .author {
     width: 180px; }
   .commits-table .message div {
@@ -4063,8 +4065,11 @@ a.th {
     font-weight: bold; }
   .show_commit .commit .commit_sha {
     margin-bottom: 14px;
-    margin-top: -14px;
-    clear: left; }
+    clear: left;
+    float: left; }
+  .show_commit .commit .commit_date {
+    margin-bottom: 14px;
+    float: right; }
   .show_commit .commit .stats {
     float: right; }
     .show_commit .commit .stats .additions {

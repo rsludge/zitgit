@@ -2,6 +2,7 @@
   h4=strip_message(commit.message, 120)
   == slim :'commits/labels', :locals => {commit: commit}, :layout => false
   .commit_sha =commit.sha
+  .commit_date =commit.date.strftime("%d.%m.%Y %H:%M")
   .author_info
     div = commit.author.name
     div = commit.author.email
