@@ -4040,10 +4040,10 @@ a.th {
       font-size: 14px; }
     .diffs li .diff-first-line {
       font-weight: bold;
-      background: #A7B5FF;
-      border-bottom: 1px solid black; }
+      background: #eee;
+      border-bottom: 1px solid #777; }
     .diffs li .diff-summ-line {
-      background: #A7B5FF;
+      background: #eee;
       font-weight: bold; }
     .diffs li .diff-added-line {
       color: #096707;
@@ -4063,9 +4063,9 @@ a.th {
   background: #ddd;
   border-radius: 16px; }
   .show_commit .commit .author_info {
-    /*width: 50%;*/
     float: left;
-    font-weight: bold; }
+    font-weight: bold;
+    clear: left; }
   .show_commit .commit .commit_sha {
     margin-bottom: 14px;
     clear: left;
