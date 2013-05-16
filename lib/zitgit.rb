@@ -1,8 +1,4 @@
 require_relative "zitgit/version"
-require 'bundler'
-Dir.chdir(File.dirname(__FILE__)) do
-  Bundler.setup
-end
 require 'sinatra/base'
 require 'grit'
 require 'slim'
