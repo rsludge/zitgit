@@ -6,19 +6,19 @@ Simple sinatra-based web-interface to view git repository history
 
 Add this line to your application's Gemfile:
 
-    gem "grit", '~> 2.5.0', git: 'https://github.com/gitlabhq/grit.git', ref: '42297cdcee16284d2e4eff23d41377f52fc28b9d'
     gem 'zitgit'
 
 or install from GitHub:
 
-    gem "grit", '~> 2.5.0', git: 'https://github.com/gitlabhq/grit.git', ref: '42297cdcee16284d2e4eff23d41377f52fc28b9d'
     gem 'zitgit', git: 'https://github.com/rsludge/zitgit.git'
 
 And then execute:
 
     $ bundle install
 
-You can not just run gem install zitgit because it has dependencies from GitHub
+Or install with:
+
+    $ gem install zitgit
 
 ## Usage
 

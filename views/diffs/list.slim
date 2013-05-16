@@ -31,7 +31,7 @@ ul.diffs
         - elsif line.match /^\+\+\+ \/dev\/null/ or line.match /^\-\-\- \/dev\/null/
         - elsif line.match /^@@ -/
           .diff-summ-line
-            = line
+            = summ_line(line)
         - elsif line[0] == '+'
           .diff-added-line
             = line
