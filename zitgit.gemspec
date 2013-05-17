@@ -20,6 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'sinatra', "~> 1.4"
   spec.add_dependency 'slim', "~> 1.3"
+  spec.add_dependency 'gitlab-grit', "~> 2.5.1"
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake", "~> 10.0"
