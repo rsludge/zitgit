@@ -131,6 +131,9 @@
         .diff-added-line{
             color: #096707;            
             background: #87f49f;
+            .trailing{
+                background: #036420;
+            }
         }
         .diff-removed-line{
             position: relative;
@@ -138,6 +141,9 @@
             right: 0;
             color: #742b2b;
             background: #ffb1cb;
+            .trailing{
+                background: #c10000;
+            }
         }
     }
 }

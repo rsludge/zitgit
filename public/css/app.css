@@ -4050,12 +4050,16 @@ a.th {
     .diffs li .diff-added-line {
       color: #096707;
       background: #87f49f; }
+      .diffs li .diff-added-line .trailing {
+        background: #036420; }
     .diffs li .diff-removed-line {
       position: relative;
       left: 0;
       right: 0;
       color: #742b2b;
       background: #ffb1cb; }
+      .diffs li .diff-removed-line .trailing {
+        background: #c10000; }
 
 .hidden {
   display: none; }

@@ -34,12 +34,10 @@ ul.diffs
             = summ_line(line)
         - elsif line[0] == '+'
           .diff-added-line
-            = line
+            == slim :'diffs/line', :locals => {line: line}, :layout => false
         - elsif line[0] == '-'
           .diff-removed-line
-            = line
+            == slim :'diffs/line', :locals => {line: line}, :layout => false
         - else
           .diff-line
-            = line
-
-
+            == slim :'diffs/line', :locals => {line: line}, :layout => false
