@@ -51,15 +51,15 @@ module Zitgit
     end
 
     get '/' do
-      repo = Grit::Repo.new('.')
-      @current_branch = Grit::Head.current(repo)
-      @commits = repo.commits(@current_branch.name, 200)
+      @repo = Grit::Repo.new('.')
+      @current_branch = Grit::Head.current(@repo)
+      @commits = @repo.commits(@current_branch.name, 200)
       @last_commit = @commits[0]
-      @repo_name = File.basename(repo.working_dir)
-      @branches = repo.heads    
-      @remotes = repo.remotes
-      @tags = repo.tags
-      @index = repo.index
+      @repo_name = File.basename(@repo.working_dir)
+      @branches = @repo.heads    
+      @remotes = @repo.remotes
+      @tags = @repo.tags
+      @index = @repo.index
       slim :index
     end
 

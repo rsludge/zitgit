@@ -186,3 +186,23 @@
     background: url('/images/loader.gif') no-repeat;
     display: none;
 }
+.status{
+    margin-bottom: 8px;
+    padding: 4px 0;
+    .status_content{
+        display: none;
+    }
+    .status-link{
+        font-weight: bold;
+        color: #000;
+        padding-left: 16px;
+        font-size: 20px;
+    }
+    &.selected{
+        background: #c3e2ff;
+        border-bottom: 2px solid #78c3ff;
+        border-top: 2px solid #78c3ff;
+        border-left: 1px solid #78c3ff;
+        border-right: 1px solid #78c3ff;
+    }
+}

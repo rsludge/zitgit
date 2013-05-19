@@ -1,6 +1,7 @@
 ChangeCommit = ($commit)->
   $target_commit = $commit.clone()
   $('.commits-table tr.selected').removeClass 'selected'
+  $('.status').removeClass 'selected'
   $commit.parents('tr').addClass 'selected'
   $('.show_commit').html $target_commit
   $('.show_commit .diffs li').niceScroll({
@@ -8,6 +9,18 @@ ChangeCommit = ($commit)->
     cursorwidth: 14,
   })
   UpdateDiffsWidth()
+
+LoadStatus = ->
+  $('.commits-table tr.selected').removeClass 'selected'
+  $('.status').addClass 'selected'
+  $status_content = $('.status .status_content').clone()
+  $('.show_commit').html $status_content
+  $('.show_commit .diffs li').niceScroll({
+    cursorcolor: '#ccc',
+    cursorwidth: 14,
+  })
+  UpdateDiffsWidth()
+
 
 SetHeight = ->
   commit_offset = $('.show_commit').offset().top
@@ -69,6 +82,9 @@ RefreshContent = ->
 $ ->
   $('.history').on 'click', '.commits-table tr', (e)->
     ChangeCommit $(this).find('.commit')
+  $('.history').on 'click', '.status-link', (e)->
+    e.preventDefault()
+    LoadStatus()
   $('.refresh').on 'click', (e)->
     e.preventDefault()
     RefreshContent()

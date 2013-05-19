@@ -1,0 +1,30 @@
+.status
+  a.status-link Status
+  .status_content
+    .commit
+      ul.diff-names
+        h3 Staged
+        - @repo.status.added.each do |file|
+          li
+            a.new_file = file[1].path
+        - @repo.status.changed.each do |file|
+          - if not file[1].sha_index.match(/^0+$/)
+            li
+              a.changed = file[1].path
+        - @repo.status.deleted.each do |file|
+          - if file[1].stage.nil?
+            li
+              a.deleted = file[1].path
+
+        h3 Not staged
+        - @repo.status.untracked.each do |file|
+          li
+            a.new_file = file[1].path
+        - @repo.status.changed.each do |file|
+          - if file[1].sha_index.match(/^0+$/)
+            li
+              a.changed = file[1].path
+        - @repo.status.deleted.each do |file|
+          - if not file[1].stage.nil?
+            li
+              a.deleted = file[1].path

@@ -1,13 +1,28 @@
 (function() {
-  var ChangeBranch, ChangeCommit, RefreshContent, SelectDiff, SetHeight, SwitchBranch, UpdateDiffsWidth;
+  var ChangeBranch, ChangeCommit, LoadStatus, RefreshContent, SelectDiff, SetHeight, SwitchBranch, UpdateDiffsWidth;
 
   ChangeCommit = function($commit) {
     var $target_commit;
 
     $target_commit = $commit.clone();
     $('.commits-table tr.selected').removeClass('selected');
+    $('.status').removeClass('selected');
     $commit.parents('tr').addClass('selected');
     $('.show_commit').html($target_commit);
+    $('.show_commit .diffs li').niceScroll({
+      cursorcolor: '#ccc',
+      cursorwidth: 14
+    });
+    return UpdateDiffsWidth();
+  };
+
+  LoadStatus = function() {
+    var $status_content;
+
+    $('.commits-table tr.selected').removeClass('selected');
+    $('.status').addClass('selected');
+    $status_content = $('.status .status_content').clone();
+    $('.show_commit').html($status_content);
     $('.show_commit .diffs li').niceScroll({
       cursorcolor: '#ccc',
       cursorwidth: 14
@@ -102,6 +117,10 @@
   $(function() {
     $('.history').on('click', '.commits-table tr', function(e) {
       return ChangeCommit($(this).find('.commit'));
+    });
+    $('.history').on('click', '.status-link', function(e) {
+      e.preventDefault();
+      return LoadStatus();
     });
     $('.refresh').on('click', function(e) {
       e.preventDefault();
