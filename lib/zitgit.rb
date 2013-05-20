@@ -2,6 +2,7 @@ require_relative "zitgit/version"
 require 'sinatra/base'
 require 'grit'
 require 'slim'
+require 'base64'
 
 module Zitgit
   class Zitgit < Sinatra::Base
@@ -47,6 +48,11 @@ module Zitgit
             item
           end
         }.join(' -> ')
+      end
+
+      def is_image(diff)
+        image_exts = ['.jpg', '.jpeg', '.png', '.gif']
+        image_exts.include?(File.extname(diff.a_path)) or image_exts.include?(File.extname(diff.b_path))
       end
     end
 
