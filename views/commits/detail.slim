@@ -13,4 +13,4 @@
       div.additions = "#{ commit.stats.additions } additions"
       div.deletions = "#{ commit.stats.deletions } deletions"
 
-  == slim :'diffs/list', :locals => {diffs: commit.diffs}, :layout => false
+  == slim(:'diffs/list', :locals => {diffs: commit.diffs}, :layout => false).force_encoding('utf-8')

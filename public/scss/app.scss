@@ -23,13 +23,25 @@
     }
 }
 .branch_label{
-    background: yellow;
+    background: #ffeeee;
+    border-color: #581313;
+    a{
+        color: #581313;
+    }
 }
 .remote_label{
-    background: red;
+    background: #ffe3e3;
+    border-color: #b32222;
+    a{
+        color: #b32222;
+    }
 }
 .tag_label{
-    background: #e77a1c;
+    background: #ffe6bc;
+    border-color: #ff9800;
+    a{
+        color: #ff9800;
+    }
 }
 .commits-table{
     thead{
@@ -96,6 +108,7 @@
     list-style-type: none;
     li{
         margin-bottom: -4px;
+        padding: 0 4px;
         .new_file{
             color: green;
         }
@@ -110,6 +123,7 @@
 .diffs{
     background: #fff;
     list-style-type: none;
+    font-family: monospace;
     li{
         border-bottom: solid #ddd 8px;
         overflow-x: scroll;        
@@ -129,6 +143,9 @@
         .diff-added-line{
             color: #096707;            
             background: #87f49f;
+            .trailing{
+                background: #036420;
+            }
         }
         .diff-removed-line{
             position: relative;
@@ -136,7 +153,13 @@
             right: 0;
             color: #742b2b;
             background: #ffb1cb;
+            .trailing{
+                background: #c10000;
+            }
         }
+    }
+    img{
+        display: block;
     }
 }
 .hidden{
@@ -152,6 +175,8 @@
             float: left;
             font-weight: bold;
             clear: left;
+            color: #eee;
+            text-shadow: 1px 1px 0px #333, 1px -1px 0px #333, -1px 1px 0px #333, -1px -1px 0px #333; 
         }
         .commit_sha{
             margin-bottom:14px;

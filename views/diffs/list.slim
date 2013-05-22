@@ -21,25 +21,36 @@ ul.diff-names
 ul.diffs
   - diffs.each do |diff|
     li
-      - diff.diff.lines.each do |line|
-        - if line.match /^\-\-\- a/
-          .diff-first-line.diff-a
-            = line
-        - elsif line.match /^\+\+\+ b/
-          .diff-first-line.diff-b
-            = line
-        - elsif line.match /^\+\+\+ \/dev\/null/ or line.match /^\-\-\- \/dev\/null/
-        - elsif line.match /^@@ -/
-          .diff-summ-line
-            = summ_line(line)
-        - elsif line[0] == '+'
-          .diff-added-line
-            = line
-        - elsif line[0] == '-'
-          .diff-removed-line
-            = line
-        - else
-          .diff-line
-            = line
-
-
+      - if is_image(diff)
+        - diff.diff.lines.each do |line|
+          - if line.match /^\-\-\- a/
+            .diff-first-line.diff-a
+              = line
+          - elsif line.match /^\+\+\+ b/
+            .diff-first-line.diff-b
+              = line
+        - if diff.a_blob
+          img src="data:#{diff.a_blob.mime_type};base64,#{Base64.encode64(diff.a_blob.data)}"
+        - if diff.b_blob
+          img src="data:#{diff.b_blob.mime_type};base64,#{Base64.encode64(diff.b_blob.data)}"
+      - else
+        - diff.diff.lines.each do |line|
+          - if line.match /^\-\-\- a/
+            .diff-first-line.diff-a
+              = line
+          - elsif line.match /^\+\+\+ b/
+            .diff-first-line.diff-b
+              = line
+          - elsif line.match /^\+\+\+ \/dev\/null/ or line.match /^\-\-\- \/dev\/null/
+          - elsif line.match /^@@ -/
+            .diff-summ-line
+              = summ_line(line)
+          - elsif line[0] == '+'
+            .diff-added-line
+              == slim(:'diffs/line', :locals => {line: line}, :layout => false).force_encoding('utf-8')
+          - elsif line[0] == '-'
+            .diff-removed-line
+              == slim(:'diffs/line', :locals => {line: line}, :layout => false).force_encoding('utf-8')
+          - else
+            .diff-line
+              == slim(:'diffs/line', :locals => {line: line}, :layout => false).force_encoding('utf-8')

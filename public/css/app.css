@@ -3969,13 +3969,22 @@ a.th {
     color: #000; }
 
 .branch_label {
-  background: yellow; }
+  background: #ffeeee;
+  border-color: #581313; }
+  .branch_label a {
+    color: #581313; }
 
 .remote_label {
-  background: red; }
+  background: #ffe3e3;
+  border-color: #b32222; }
+  .remote_label a {
+    color: #b32222; }
 
 .tag_label {
-  background: #e77a1c; }
+  background: #ffe6bc;
+  border-color: #ff9800; }
+  .tag_label a {
+    color: #ff9800; }
 
 .commits-table {
   table-layout: fixed;
@@ -4021,7 +4030,8 @@ a.th {
   padding-top: 14px;
   list-style-type: none; }
   .diff-names li {
-    margin-bottom: -4px; }
+    margin-bottom: -4px;
+    padding: 0 4px; }
     .diff-names li .new_file {
       color: green; }
     .diff-names li .deleted {
@@ -4031,7 +4041,8 @@ a.th {
 
 .diffs {
   background: #fff;
-  list-style-type: none; }
+  list-style-type: none;
+  font-family: monospace; }
   .diffs li {
     border-bottom: solid #ddd 8px;
     overflow-x: scroll; }
@@ -4048,12 +4059,18 @@ a.th {
     .diffs li .diff-added-line {
       color: #096707;
       background: #87f49f; }
+      .diffs li .diff-added-line .trailing {
+        background: #036420; }
     .diffs li .diff-removed-line {
       position: relative;
       left: 0;
       right: 0;
       color: #742b2b;
       background: #ffb1cb; }
+      .diffs li .diff-removed-line .trailing {
+        background: #c10000; }
+  .diffs img {
+    display: block; }
 
 .hidden {
   display: none; }
@@ -4065,7 +4082,9 @@ a.th {
   .show_commit .commit .author_info {
     float: left;
     font-weight: bold;
-    clear: left; }
+    clear: left;
+    color: #eee;
+    text-shadow: 1px 1px 0px #333, 1px -1px 0px #333, -1px 1px 0px #333, -1px -1px 0px #333; }
   .show_commit .commit .commit_sha {
     margin-bottom: 14px;
     clear: left;

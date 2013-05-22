@@ -1,0 +1,5 @@
+- if line.match(/(\s+)\n$/)
+  = line.rstrip
+  span.trailing = Regexp.last_match(1)
+- else
+  = line
