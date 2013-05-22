@@ -104,7 +104,7 @@
 
     motions = [38, 40];
     return $('.history').on('keydown', function(e) {
-      var $next;
+      var $next, current_scroll, offset;
 
       if (motions.indexOf(e.keyCode) === -1) {
         return;
@@ -113,10 +113,23 @@
         e.preventDefault();
         e.stopPropagation();
         $next = $('.commits-table tr.selected').prev();
+        if ($next.length > 0) {
+          if ($next.offset().top < $('.history').offset().top) {
+            current_scroll = $('.history').scrollTop();
+            $('.history').scrollTop(current_scroll + $next.offset().top - $('.history').offset().top);
+          }
+        }
       } else if (e.keyCode === 40) {
         e.preventDefault();
         e.stopPropagation();
         $next = $('.commits-table tr.selected').next();
+        offset = $next.offset().top - $('.history').offset().top;
+        if ($next.length > 0) {
+          if (offset + $next.outerHeight() > $('.history').outerHeight()) {
+            current_scroll = $('.history').scrollTop();
+            $('.history').scrollTop(current_scroll + offset + $next.outerHeight() - $('.history').outerHeight());
+          }
+        }
       }
       if ($next && $next.length > 0) {
         return ChangeCommit($next.find('.commit'));
