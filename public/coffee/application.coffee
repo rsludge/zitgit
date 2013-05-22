@@ -66,6 +66,22 @@ RefreshContent = ->
           return false
       return false
 
+TableArrows = ->
+  motions = [38, 40]
+  $('.history').on 'keydown', (e)->
+    if motions.indexOf(e.keyCode) == -1
+      return
+    if e.keyCode == 38 #up
+      e.preventDefault()
+      e.stopPropagation()
+      $next = $('.commits-table tr.selected').prev()
+    else if e.keyCode == 40 #down
+      e.preventDefault()
+      e.stopPropagation()
+      $next = $('.commits-table tr.selected').next()
+    if $next and $next.length > 0
+      ChangeCommit $next.find('.commit')
+
 $ ->
   $('.history').on 'click', '.commits-table tr', (e)->
     ChangeCommit $(this).find('.commit')
@@ -76,6 +92,7 @@ $ ->
   SwitchBranch()
   SetHeight()
   SelectDiff()
+  TableArrows()
 
   $(window).resize ->
     SetHeight()

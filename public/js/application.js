@@ -1,5 +1,5 @@
 (function() {
-  var ChangeBranch, ChangeCommit, RefreshContent, SelectDiff, SetHeight, SwitchBranch, UpdateDiffsWidth;
+  var ChangeBranch, ChangeCommit, RefreshContent, SelectDiff, SetHeight, SwitchBranch, TableArrows, UpdateDiffsWidth;
 
   ChangeCommit = function($commit) {
     var $target_commit;
@@ -99,6 +99,31 @@
     });
   };
 
+  TableArrows = function() {
+    var motions;
+
+    motions = [38, 40];
+    return $('.history').on('keydown', function(e) {
+      var $next;
+
+      if (motions.indexOf(e.keyCode) === -1) {
+        return;
+      }
+      if (e.keyCode === 38) {
+        e.preventDefault();
+        e.stopPropagation();
+        $next = $('.commits-table tr.selected').prev();
+      } else if (e.keyCode === 40) {
+        e.preventDefault();
+        e.stopPropagation();
+        $next = $('.commits-table tr.selected').next();
+      }
+      if ($next && $next.length > 0) {
+        return ChangeCommit($next.find('.commit'));
+      }
+    });
+  };
+
   $(function() {
     $('.history').on('click', '.commits-table tr', function(e) {
       return ChangeCommit($(this).find('.commit'));
@@ -110,6 +135,7 @@
     SwitchBranch();
     SetHeight();
     SelectDiff();
+    TableArrows();
     $(window).resize(function() {
       return SetHeight();
     });
