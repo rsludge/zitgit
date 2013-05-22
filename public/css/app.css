@@ -3969,13 +3969,22 @@ a.th {
     color: #000; }
 
 .branch_label {
-  background: yellow; }
+  background: #ffeeee;
+  border-color: #581313; }
+  .branch_label a {
+    color: #581313; }
 
 .remote_label {
-  background: red; }
+  background: #ffe3e3;
+  border-color: #b32222; }
+  .remote_label a {
+    color: #b32222; }
 
 .tag_label {
-  background: #e77a1c; }
+  background: #ffe6bc;
+  border-color: #ff9800; }
+  .tag_label a {
+    color: #ff9800; }
 
 .commits-table {
   table-layout: fixed;

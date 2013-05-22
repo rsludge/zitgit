@@ -23,13 +23,25 @@
     }
 }
 .branch_label{
-    background: yellow;
+    background: #ffeeee;
+    border-color: #581313;
+    a{
+        color: #581313;
+    }
 }
 .remote_label{
-    background: red;
+    background: #ffe3e3;
+    border-color: #b32222;
+    a{
+        color: #b32222;
+    }
 }
 .tag_label{
-    background: #e77a1c;
+    background: #ffe6bc;
+    border-color: #ff9800;
+    a{
+        color: #ff9800;
+    }
 }
 .commits-table{
     thead{
