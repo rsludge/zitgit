@@ -1,5 +1,5 @@
 (function() {
-  var ChangeBranch, ChangeCommit, RefreshContent, SelectDiff, SetHeight, SwitchBranch, TableArrows, UpdateDiffsWidth;
+  var ChangeBranch, ChangeCommit, RefreshContent, SelectDiff, SelectRow, SetHeight, SwitchBranch, TableArrows, UpdateDiffsWidth;
 
   ChangeCommit = function($commit) {
     var $target_commit;
@@ -99,40 +99,54 @@
     });
   };
 
+  SelectRow = function($row) {
+    var current_scroll, offset;
+
+    if ($row.offset().top < $('.history').offset().top) {
+      current_scroll = $('.history').scrollTop();
+      $('.history').scrollTop(current_scroll + $row.offset().top - $('.history').offset().top);
+    }
+    offset = $row.offset().top - $('.history').offset().top;
+    if (offset + $row.outerHeight() > $('.history').outerHeight()) {
+      current_scroll = $('.history').scrollTop();
+      $('.history').scrollTop(current_scroll + offset + $row.outerHeight() - $('.history').outerHeight());
+    }
+    return ChangeCommit($row.find('.commit'));
+  };
+
   TableArrows = function() {
     var motions;
 
-    motions = [38, 40];
+    motions = [38, 40, 33, 34];
     return $('.history').on('keydown', function(e) {
-      var $next, current_scroll, offset;
+      var $next, $next_rows;
 
       if (motions.indexOf(e.keyCode) === -1) {
         return;
       }
+      e.preventDefault();
+      e.stopPropagation();
       if (e.keyCode === 38) {
-        e.preventDefault();
-        e.stopPropagation();
         $next = $('.commits-table tr.selected').prev();
-        if ($next.length > 0) {
-          if ($next.offset().top < $('.history').offset().top) {
-            current_scroll = $('.history').scrollTop();
-            $('.history').scrollTop(current_scroll + $next.offset().top - $('.history').offset().top);
-          }
-        }
       } else if (e.keyCode === 40) {
-        e.preventDefault();
-        e.stopPropagation();
         $next = $('.commits-table tr.selected').next();
-        offset = $next.offset().top - $('.history').offset().top;
-        if ($next.length > 0) {
-          if (offset + $next.outerHeight() > $('.history').outerHeight()) {
-            current_scroll = $('.history').scrollTop();
-            $('.history').scrollTop(current_scroll + offset + $next.outerHeight() - $('.history').outerHeight());
-          }
+      } else if (e.keyCode === 33) {
+        $next_rows = $('.commits-table tr.selected').prevAll();
+        if ($next_rows.length >= 10) {
+          $next = $next_rows.eq(9);
+        } else {
+          $next = $next_rows.last();
+        }
+      } else if (e.keyCode === 34) {
+        $next_rows = $('.commits-table tr.selected').nextAll();
+        if ($next_rows.length >= 10) {
+          $next = $next_rows.eq(9);
+        } else {
+          $next = $next_rows.last();
         }
       }
       if ($next && $next.length > 0) {
-        return ChangeCommit($next.find('.commit'));
+        return SelectRow($next);
       }
     });
   };

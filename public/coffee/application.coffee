@@ -66,30 +66,41 @@ RefreshContent = ->
           return false
       return false
 
+SelectRow = ($row) ->
+  if $row.offset().top < $('.history').offset().top
+    current_scroll = $('.history').scrollTop()
+    $('.history').scrollTop(current_scroll + $row.offset().top - $('.history').offset().top)
+  offset = $row.offset().top - $('.history').offset().top
+  if offset + $row.outerHeight() > $('.history').outerHeight()
+    current_scroll = $('.history').scrollTop()
+    $('.history').scrollTop(current_scroll + offset + $row.outerHeight() - $('.history').outerHeight())
+  ChangeCommit $row.find('.commit')
+
 TableArrows = ->
-  motions = [38, 40]
+  motions = [38, 40, 33, 34]
   $('.history').on 'keydown', (e)->
     if motions.indexOf(e.keyCode) == -1
       return
+    e.preventDefault()
+    e.stopPropagation()
     if e.keyCode == 38 #up
-      e.preventDefault()
-      e.stopPropagation()
       $next = $('.commits-table tr.selected').prev()
-      if $next.length > 0
-        if $next.offset().top < $('.history').offset().top
-          current_scroll = $('.history').scrollTop()
-          $('.history').scrollTop(current_scroll + $next.offset().top - $('.history').offset().top)
     else if e.keyCode == 40 #down
-      e.preventDefault()
-      e.stopPropagation()
       $next = $('.commits-table tr.selected').next()
-      offset = $next.offset().top - $('.history').offset().top
-      if $next.length > 0
-        if offset + $next.outerHeight() > $('.history').outerHeight()
-          current_scroll = $('.history').scrollTop()
-          $('.history').scrollTop(current_scroll + offset + $next.outerHeight() - $('.history').outerHeight())
+    else if e.keyCode == 33 #page up
+      $next_rows = $('.commits-table tr.selected').prevAll()
+      if $next_rows.length >= 10
+        $next = $next_rows.eq(9)
+      else
+        $next = $next_rows.last()
+    else if e.keyCode == 34 #page down
+      $next_rows = $('.commits-table tr.selected').nextAll()
+      if $next_rows.length >= 10
+        $next = $next_rows.eq(9)
+      else
+        $next = $next_rows.last()
     if $next and $next.length > 0
-      ChangeCommit $next.find('.commit')
+      SelectRow($next)
 
 $ ->
   $('.history').on 'click', '.commits-table tr', (e)->
