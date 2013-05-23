@@ -1,5 +1,5 @@
 (function() {
-  var ChangeBranch, ChangeCommit, LoadStatus, RefreshContent, SelectDiff, SetHeight, SwitchBranch, UpdateDiffsWidth;
+  var ChangeBranch, ChangeCommit, LoadStatus, RefreshContent, SelectDiff, SelectRow, SetHeight, SwitchBranch, TableArrows, UpdateDiffsWidth;
 
   ChangeCommit = function($commit) {
     var $target_commit;
@@ -114,6 +114,62 @@
     });
   };
 
+  SelectRow = function($row) {
+    var current_scroll, offset;
+
+    if ($row.offset().top < $('.history').offset().top) {
+      current_scroll = $('.history').scrollTop();
+      $('.history').scrollTop(current_scroll + $row.offset().top - $('.history').offset().top);
+    }
+    offset = $row.offset().top - $('.history').offset().top;
+    if (offset + $row.outerHeight() > $('.history').outerHeight()) {
+      current_scroll = $('.history').scrollTop();
+      $('.history').scrollTop(current_scroll + offset + $row.outerHeight() - $('.history').outerHeight());
+    }
+    return ChangeCommit($row.find('.commit'));
+  };
+
+  TableArrows = function() {
+    var motions;
+
+    motions = [38, 40, 33, 34, 35, 36];
+    return $('.history').on('keydown', function(e) {
+      var $next, $next_rows;
+
+      if (motions.indexOf(e.keyCode) === -1) {
+        return;
+      }
+      e.preventDefault();
+      e.stopPropagation();
+      if (e.keyCode === 38) {
+        $next = $('.commits-table tr.selected').prev();
+      } else if (e.keyCode === 40) {
+        $next = $('.commits-table tr.selected').next();
+      } else if (e.keyCode === 33) {
+        $next_rows = $('.commits-table tr.selected').prevAll();
+        if ($next_rows.length >= 10) {
+          $next = $next_rows.eq(9);
+        } else {
+          $next = $next_rows.last();
+        }
+      } else if (e.keyCode === 34) {
+        $next_rows = $('.commits-table tr.selected').nextAll();
+        if ($next_rows.length >= 10) {
+          $next = $next_rows.eq(9);
+        } else {
+          $next = $next_rows.last();
+        }
+      } else if (e.keyCode === 36) {
+        $next = $('.commits-table tbody tr:first');
+      } else if (e.keyCode === 35) {
+        $next = $('.commits-table tr:last');
+      }
+      if ($next && $next.length > 0) {
+        return SelectRow($next);
+      }
+    });
+  };
+
   $(function() {
     $('.history').on('click', '.commits-table tr', function(e) {
       return ChangeCommit($(this).find('.commit'));
@@ -129,6 +185,7 @@
     SwitchBranch();
     SetHeight();
     SelectDiff();
+    TableArrows();
     $(window).resize(function() {
       return SetHeight();
     });
