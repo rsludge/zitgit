@@ -77,7 +77,7 @@ SelectRow = ($row) ->
   ChangeCommit $row.find('.commit')
 
 TableArrows = ->
-  motions = [38, 40, 33, 34]
+  motions = [38, 40, 33, 34, 35, 36]
   $('.history').on 'keydown', (e)->
     if motions.indexOf(e.keyCode) == -1
       return
@@ -99,6 +99,10 @@ TableArrows = ->
         $next = $next_rows.eq(9)
       else
         $next = $next_rows.last()
+    else if e.keyCode == 36 #home
+      $next = $('.commits-table tbody tr:first')
+    else if e.keyCode == 35 #end
+      $next = $('.commits-table tr:last')
     if $next and $next.length > 0
       SelectRow($next)
 

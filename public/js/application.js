@@ -117,7 +117,7 @@
   TableArrows = function() {
     var motions;
 
-    motions = [38, 40, 33, 34];
+    motions = [38, 40, 33, 34, 35, 36];
     return $('.history').on('keydown', function(e) {
       var $next, $next_rows;
 
@@ -144,6 +144,10 @@
         } else {
           $next = $next_rows.last();
         }
+      } else if (e.keyCode === 36) {
+        $next = $('.commits-table tbody tr:first');
+      } else if (e.keyCode === 35) {
+        $next = $('.commits-table tr:last');
       }
       if ($next && $next.length > 0) {
         return SelectRow($next);
