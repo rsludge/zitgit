@@ -1,4 +1,6 @@
-require_relative "zitgit/version"
+require_relative 'zitgit/version'
+require_relative 'zitgit/helpers/views'
+require_relative 'zitgit/helpers/git'
 require 'sinatra/base'
 require 'grit'
 require 'slim'
@@ -9,60 +11,8 @@ module Zitgit
     configure do
       set :root, File.expand_path('..', File.dirname(__FILE__))
     end
-
-    helpers do
-      def heads(commit)
-        repo = Grit::Repo.new('.')
-        repo.heads.select{|head| head.commit.id == commit.id}
-      end
-
-      def remotes(commit)
-        repo = Grit::Repo.new('.')
-        repo.remotes.select{|head| head.commit.id == commit.id}
-      end
-
-      def tags(commit)
-        repo = Grit::Repo.new('.')
-        repo.tags.select{|head| head.commit.id == commit.id}
-      end
-
-      def strip_message(text, length)
-        text.length > length ? text[0, length] + '...' : text
-      end
-
-      def merge_commit?(commit)
-        commit.parents.count > 1
-      end
-
-      def large_commit?(commit)
-        commit.diffs.count > 20
-      end
-
-      def large_diff?(diff)
-        diff.diff.lines.count > 200
-      end
-
-      def is_head_ref(ref)
-        ref.name.split('/').index('HEAD')
-      end
-
-      def summ_line(line)
-        line.match(/@@\s+-([^\s]+)\s+\+([^\s]+)\s+@@/)
-        [Regexp.last_match(1), Regexp.last_match(2)].map{|item|
-          parts = item.split(',')
-          if parts.count == 2
-            parts[0] + '-' + (parts[0].to_i + parts[1].to_i).to_s
-          else
-            item
-          end
-        }.join(' -> ')
-      end
-
-      def is_image(diff)
-        image_exts = ['.jpg', '.jpeg', '.png', '.gif']
-        image_exts.include?(File.extname(diff.a_path)) or image_exts.include?(File.extname(diff.b_path))
-      end
-    end
+    helpers ViewsHelpers
+    helpers GitHelpers
 
     get '/' do
       @repo = Grit::Repo.new('.')
