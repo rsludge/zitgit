@@ -34,6 +34,10 @@ module Zitgit
         commit.parents.count > 1
       end
 
+      def large_commit?(commit)
+        commit.diffs.count > 20
+      end
+
       def is_head_ref(ref)
         ref.name.split('/').index('HEAD')
       end
@@ -70,8 +74,8 @@ module Zitgit
     end
 
     get "/ref/:ref_name" do |ref_name|
-      repo = Grit::Repo.new('')
-      commits = repo.commits(ref_name, 200)
+      @repo = Grit::Repo.new('.')
+      commits = @repo.commits(ref_name, 200)
       slim :branch, :locals => { commits: commits }, :layout => false
     end
 

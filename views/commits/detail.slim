@@ -13,4 +13,9 @@
       div.additions = "#{ commit.stats.additions } additions"
       div.deletions = "#{ commit.stats.deletions } deletions"
 
-  == slim(:'diffs/list', :locals => {diffs: commit.diffs}, :layout => false).force_encoding('utf-8')
+  - if large_commit?(commit)
+    .diff-names
+      =' commit.diffs.count
+      | file changed
+  - else 
+    == slim(:'diffs/list', :locals => {diffs: commit.diffs}, :layout => false).force_encoding('utf-8')
