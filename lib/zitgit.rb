@@ -38,6 +38,10 @@ module Zitgit
         commit.diffs.count > 20
       end
 
+      def large_diff?(diff)
+        diff.diff.lines.count > 200
+      end
+
       def is_head_ref(ref)
         ref.name.split('/').index('HEAD')
       end

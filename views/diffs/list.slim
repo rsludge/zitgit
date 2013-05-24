@@ -22,17 +22,9 @@ ul.diffs
   - diffs.each do |diff|
     li
       - if is_image(diff)
-        - diff.diff.lines.each do |line|
-          - if line.match /^\-\-\- a/
-            .diff-first-line.diff-a
-              = line
-          - elsif line.match /^\+\+\+ b/
-            .diff-first-line.diff-b
-              = line
-        - if diff.a_blob
-          img src="data:#{diff.a_blob.mime_type};base64,#{Base64.encode64(diff.a_blob.data)}"
-        - if diff.b_blob
-          img src="data:#{diff.b_blob.mime_type};base64,#{Base64.encode64(diff.b_blob.data)}"
+        == slim :'diffs/image', :locals => {diff: diff}, :layout => false
+      - elsif large_diff?(diff)
+        == slim :'diffs/large', :locals => {diff: diff}, :layout => false
       - else
         - diff.diff.lines.each do |line|
           - if line.match /^\-\-\- a/
