@@ -1,9 +1,10 @@
 .status
-  a.status-link Status
+  a.status-link Stage
   .status_content
     .commit
+      h4 Stage
       ul.diff-names
-        h3 Staged
+        li.all.selected All files
         - @repo.status.added.each do |file|
           li
             a.new_file = file[1].path
@@ -15,16 +16,7 @@
           - if file[1].stage.nil?
             li
               a.deleted = file[1].path
-
-        h3 Not staged
-        - @repo.status.untracked.each do |file|
+      ul.diffs
+        - @repo.status.added.each do |file|
           li
-            a.new_file = file[1].path
-        - @repo.status.changed.each do |file|
-          - if file[1].sha_index.match(/^0+$/)
-            li
-              a.changed = file[1].path
-        - @repo.status.deleted.each do |file|
-          - if not file[1].stage.nil?
-            li
-              a.deleted = file[1].path
+            == slim(:'status/added', :locals => {item: file[1]}, :layout => false)

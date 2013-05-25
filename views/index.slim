@@ -35,6 +35,7 @@ nav.top-bar
 .loader
 .main
   .history.large-6.columns
+    == slim :'status/list', :locals => {repo: @repo}, :layout => false
     == slim :'commits/list', :locals => {commits: @commits}, :layout => false
   .show_commit.large-6.columns
     == slim :'commits/detail', :locals => {commit: @last_commit}, :layout => false
