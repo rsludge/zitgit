@@ -1,5 +1,5 @@
 (function() {
-  var ChangeBranch, ChangeCommit, LoadStatus, RefreshContent, SelectDiff, SelectRow, SetHeight, SwitchBranch, TableArrows, UpdateDiffsWidth;
+  var ChangeBranch, ChangeCommit, CommitArrows, LoadStatus, RefreshContent, SelectDiff, SelectRow, SetHeight, SwitchBranch, TableArrows, UpdateDiffsWidth;
 
   ChangeCommit = function($commit) {
     var $target_commit;
@@ -45,20 +45,18 @@
     });
   };
 
-  SelectDiff = function() {
-    return $('.show_commit').on('click', '.diff-names li', function(e) {
-      var index;
+  SelectDiff = function($diff) {
+    var index;
 
-      $('.show_commit .diff-names .selected').removeClass('selected');
-      $(this).addClass('selected');
-      if ($(this).hasClass('all')) {
-        return $('.show_commit .diffs li').removeClass('hidden');
-      } else {
-        index = $(this).index() - 1;
-        $('.show_commit .diffs li').addClass('hidden');
-        return $('.show_commit .diffs li:eq(' + index + ')').removeClass('hidden');
-      }
-    });
+    $('.show_commit .diff-names .selected').removeClass('selected');
+    $diff.addClass('selected');
+    if ($diff.hasClass('all')) {
+      return $('.show_commit .diffs li').removeClass('hidden');
+    } else {
+      index = $diff.index() - 1;
+      $('.show_commit .diffs li').addClass('hidden');
+      return $('.show_commit .diffs li:eq(' + index + ')').removeClass('hidden');
+    }
   };
 
   ChangeBranch = function($link) {
@@ -170,6 +168,29 @@
     });
   };
 
+  CommitArrows = function() {
+    var motions;
+
+    motions = [38, 40];
+    return $('.show_commit').on('keydown', function(e) {
+      var $next;
+
+      if (motions.indexOf(e.keyCode) === -1) {
+        return;
+      }
+      e.preventDefault();
+      e.stopPropagation();
+      if (e.keyCode === 38) {
+        $next = $('.show_commit .diff-names li.selected').prev();
+      } else if (e.keyCode === 40) {
+        $next = $('.show_commit .diff-names li.selected').next();
+      }
+      if ($next && $next.length > 0) {
+        return SelectDiff($next);
+      }
+    });
+  };
+
   $(function() {
     $('.history').on('click', '.commits-table tr', function(e) {
       return ChangeCommit($(this).find('.commit'));
@@ -182,10 +203,13 @@
       e.preventDefault();
       return RefreshContent();
     });
+    $('.show_commit').on('click', '.diff-names li', function(e) {
+      return SelectDiff($(this));
+    });
     SwitchBranch();
     SetHeight();
-    SelectDiff();
     TableArrows();
+    CommitArrows();
     $(window).resize(function() {
       return SetHeight();
     });

@@ -31,16 +31,15 @@ UpdateDiffsWidth = ->
   $('.show_commit .diffs li').each (index)->
     $(this).find('div').css('width', $(this)[0].scrollWidth)
 
-SelectDiff = ->
-  $('.show_commit').on 'click', '.diff-names li', (e)->
-    $('.show_commit .diff-names .selected').removeClass('selected')
-    $(this).addClass('selected')
-    if $(this).hasClass('all')
-      $('.show_commit .diffs li').removeClass('hidden')
-    else
-      index = $(this).index() - 1
-      $('.show_commit .diffs li').addClass('hidden')
-      $('.show_commit .diffs li:eq('+index+')').removeClass('hidden')
+SelectDiff = ($diff) ->
+  $('.show_commit .diff-names .selected').removeClass('selected')
+  $diff.addClass('selected')
+  if $diff.hasClass('all')
+    $('.show_commit .diffs li').removeClass('hidden')
+  else
+    index = $diff.index() - 1
+    $('.show_commit .diffs li').addClass('hidden')
+    $('.show_commit .diffs li:eq('+index+')').removeClass('hidden')
 
 ChangeBranch = ($link)->
   timeout = setTimeout ->
@@ -118,6 +117,20 @@ TableArrows = ->
     if $next and $next.length > 0
       SelectRow($next)
 
+CommitArrows = ->
+  motions = [38, 40]
+  $('.show_commit').on 'keydown', (e)->
+    if motions.indexOf(e.keyCode) == -1
+      return
+    e.preventDefault()
+    e.stopPropagation()
+    if e.keyCode == 38 #up
+      $next = $('.show_commit .diff-names li.selected').prev()
+    else if e.keyCode == 40 #down
+      $next = $('.show_commit .diff-names li.selected').next()
+    if $next and $next.length > 0
+      SelectDiff($next)
+
 $ ->
   $('.history').on 'click', '.commits-table tr', (e)->
     ChangeCommit $(this).find('.commit')
@@ -127,11 +140,13 @@ $ ->
   $('.refresh').on 'click', (e)->
     e.preventDefault()
     RefreshContent()
+  $('.show_commit').on 'click', '.diff-names li', (e)->
+    SelectDiff $(this)
 
   SwitchBranch()
   SetHeight()
-  SelectDiff()
   TableArrows()
+  CommitArrows()
 
   $(window).resize ->
     SetHeight()

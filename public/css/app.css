@@ -4093,7 +4093,8 @@ a.th {
     margin-bottom: 14px;
     float: right; }
   .show_commit .commit .stats {
-    float: right; }
+    float: right;
+    text-align: right; }
     .show_commit .commit .stats .additions {
       color: green; }
     .show_commit .commit .stats .deletions {
@@ -4117,6 +4118,7 @@ a.th {
   .status .status_content {
     display: none; }
   .status .status-link {
+    display: block;
     font-weight: bold;
     color: #000;
     padding-left: 16px;

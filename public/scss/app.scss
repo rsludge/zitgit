@@ -189,6 +189,7 @@
         }
         .stats{
             float: right;
+            text-align: right;
             .additions{
                 color: green;
             }
@@ -218,6 +219,7 @@
         display: none;
     }
     .status-link{
+        display: block;
         font-weight: bold;
         color: #000;
         padding-left: 16px;
