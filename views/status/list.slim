@@ -20,3 +20,7 @@
         - @repo.status.added.each do |file|
           li
             == slim(:'status/added', :locals => {item: file[1]}, :layout => false)
+        - @repo.status.deleted.each do |file|
+          - if file[1].stage.nil?
+            li
+              == slim(:'status/deleted', :locals => {item: file[1]}, :layout => false)

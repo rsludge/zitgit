@@ -1,0 +1,9 @@
+.diff-first-line.diff-b
+  |--- a/
+  = item.path
+.diff-summ-line
+  = "1-#{item.blob.content.lines.count} -> 1"
+- item.blob.content.lines.each do |line|
+  .diff-removed-line
+    == slim(:'diffs/line', :locals => {line: '-'+line}, :layout => false).force_encoding('utf-8')
+
