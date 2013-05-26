@@ -67,7 +67,12 @@ SwitchBranch = ->
     e.preventDefault()
     ChangeBranch($(this))
 
+RefreshStatus = ->
+  $.get '/status/', (data)->
+    $('.status').replaceWith data
+
 RefreshContent = ->
+  RefreshStatus()
   $('.current_branch').each (index)->
     if $(this).text() != ''
       branch_name = $(this).text()

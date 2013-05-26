@@ -1,5 +1,5 @@
 (function() {
-  var ChangeBranch, ChangeCommit, CommitArrows, LoadStatus, RefreshContent, SelectDiff, SelectRow, SetHeight, SwitchBranch, TableArrows, UpdateDiffsWidth;
+  var ChangeBranch, ChangeCommit, CommitArrows, LoadStatus, RefreshContent, RefreshStatus, SelectDiff, SelectRow, SetHeight, SwitchBranch, TableArrows, UpdateDiffsWidth;
 
   ChangeCommit = function($commit) {
     var $target_commit;
@@ -95,7 +95,14 @@
     });
   };
 
+  RefreshStatus = function() {
+    return $.get('/status/', function(data) {
+      return $('.status').replaceWith(data);
+    });
+  };
+
   RefreshContent = function() {
+    RefreshStatus();
     return $('.current_branch').each(function(index) {
       var branch_name;
 

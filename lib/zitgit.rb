@@ -1,6 +1,7 @@
 require_relative 'zitgit/version'
 require_relative 'zitgit/helpers/views'
 require_relative 'zitgit/helpers/git'
+require_relative 'grit/status'
 require 'sinatra/base'
 require 'grit'
 require 'slim'
@@ -31,6 +32,11 @@ module Zitgit
       @repo = Grit::Repo.new('.')
       commits = @repo.commits(ref_name, 200)
       slim :branch, :locals => { commits: commits }, :layout => false
+    end
+
+    get "/status/" do
+      @repo = Grit::Repo.new('.')
+      slim :'status/list', :locals => {repo: @repo}, :layout => false
     end
 
     run! if app_file == $0
