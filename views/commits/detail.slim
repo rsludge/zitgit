@@ -15,7 +15,8 @@
 
   - if large_commit?(commit)
     .diff-names
-      =' commit.diffs.count
-      | file changed
+      .large
+        =' commit.diffs.count
+        | files changed
   - else 
     == slim(:'diffs/list', :locals => {diffs: commit.diffs}, :layout => false).force_encoding('utf-8')
