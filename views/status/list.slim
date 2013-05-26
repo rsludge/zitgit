@@ -20,6 +20,10 @@
         - @repo.status.added.each do |file|
           li
             == slim(:'status/added', :locals => {item: file[1]}, :layout => false)
+        - @repo.status.changed.each do |file|
+          - if not file[1].sha_index.match(/^0+$/)
+            li
+              == slim(:'status/changed', :locals => {item: file[1]}, :layout => false)
         - @repo.status.deleted.each do |file|
           - if file[1].stage.nil?
             li
