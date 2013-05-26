@@ -34,6 +34,11 @@ module Zitgit
       slim :branch, :locals => { commits: commits }, :layout => false
     end
 
+    get "/status/" do
+      @repo = Grit::Repo.new('.')
+      slim :'status/list', :locals => {repo: @repo}, :layout => false
+    end
+
     run! if app_file == $0
   end
 end
