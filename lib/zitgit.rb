@@ -1,9 +1,9 @@
 require_relative 'zitgit/version'
 require_relative 'zitgit/helpers/views'
 require_relative 'zitgit/helpers/git'
+require 'grit'
 require_relative 'grit/status'
 require 'sinatra/base'
-require 'grit'
 require 'slim'
 require 'base64'
 
