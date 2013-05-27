@@ -4,19 +4,7 @@ Simple sinatra-based web-interface to view git repository history
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'zitgit'
-
-or install from GitHub:
-
-    gem 'zitgit', git: 'https://github.com/rsludge/zitgit.git'
-
-And then execute:
-
-    $ bundle install
-
-Or install with:
+To install execute:
 
     $ gem install zitgit
 
