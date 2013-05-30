@@ -1,5 +1,5 @@
 (function() {
-  var ChangeBranch, ChangeCommit, CommitArrows, LoadStatus, RefreshContent, RefreshStatus, SelectDiff, SelectRow, SetHeight, SwitchBranch, TableArrows, UpdateDiffsWidth;
+  var ChangeBranch, ChangeCommit, CommitArrows, LoadStatus, SelectDiff, SelectRow, SetHeight, SwitchBranch, TableArrows, UpdateDiffsWidth;
 
   ChangeCommit = function($commit) {
     var $target_commit;
@@ -95,30 +95,6 @@
     });
   };
 
-  RefreshStatus = function() {
-    return $.get('/status/', function(data) {
-      return $('.status').replaceWith(data);
-    });
-  };
-
-  RefreshContent = function() {
-    RefreshStatus();
-    return $('.current_branch').each(function(index) {
-      var branch_name;
-
-      if ($(this).text() !== '') {
-        branch_name = $(this).text();
-        $(this).parent('.has-dropdown').find('.dropdown li a').each(function(index) {
-          if ($(this).text() === branch_name) {
-            ChangeBranch($(this));
-            return false;
-          }
-        });
-        return false;
-      }
-    });
-  };
-
   SelectRow = function($row) {
     var current_scroll, offset;
 
@@ -205,10 +181,6 @@
     $('.history').on('click', '.status-link', function(e) {
       e.preventDefault();
       return LoadStatus();
-    });
-    $('.refresh').on('click', function(e) {
-      e.preventDefault();
-      return RefreshContent();
     });
     $('.show_commit').on('click', '.diff-names li', function(e) {
       return SelectDiff($(this));

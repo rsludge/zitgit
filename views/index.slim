@@ -28,10 +28,6 @@ nav.top-bar
         a.active.current_branch
         ul.dropdown.tags
           == slim :'refs/dropdown', :locals => {refs: @tags}, :layout => false
-    ul.right
-      li
-        a.refresh href="/"
-          img src="images/refresh.png"
 .loader
 .main
   .history.large-6.columns

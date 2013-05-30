@@ -67,21 +67,6 @@ SwitchBranch = ->
     e.preventDefault()
     ChangeBranch($(this))
 
-RefreshStatus = ->
-  $.get '/status/', (data)->
-    $('.status').replaceWith data
-
-RefreshContent = ->
-  RefreshStatus()
-  $('.current_branch').each (index)->
-    if $(this).text() != ''
-      branch_name = $(this).text()
-      $(this).parent('.has-dropdown').find('.dropdown li a').each (index)->
-        if $(this).text() == branch_name
-          ChangeBranch($(this))
-          return false
-      return false
-
 SelectRow = ($row) ->
   if $row.offset().top < $('.history').offset().top
     current_scroll = $('.history').scrollTop()
@@ -142,9 +127,6 @@ $ ->
   $('.history').on 'click', '.status-link', (e)->
     e.preventDefault()
     LoadStatus()
-  $('.refresh').on 'click', (e)->
-    e.preventDefault()
-    RefreshContent()
   $('.show_commit').on 'click', '.diff-names li', (e)->
     SelectDiff $(this)
 
