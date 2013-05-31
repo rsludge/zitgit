@@ -4069,6 +4069,8 @@ a.th {
       background: #ffb1cb; }
       .diffs li .diff-removed-line .trailing {
         background: #c10000; }
+    .diffs li .loading {
+      display: none; }
   .diffs img {
     display: block; }
 

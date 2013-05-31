@@ -39,6 +39,12 @@ module Zitgit
       slim :'status/list', :locals => {repo: @repo}, :layout => false
     end
 
+    get "/diff/:sha/:blob_type/:blob_id" do |sha, blob_type, blob_id|
+      @repo = Grit::Repo.new('.')
+      @diff = @repo.commit(sha).diffs.select{|diff| diff.send(blob_type).id == blob_id}.first
+      slim :'diffs/text', :locals => {diff: @diff}, :layout => false
+    end
+
     run! if app_file == $0
   end
 end

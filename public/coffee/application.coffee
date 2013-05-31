@@ -121,6 +121,16 @@ CommitArrows = ->
     if $next and $next.length > 0
       SelectDiff($next)
 
+ShowDiff = ->
+  $('body').on 'click', '.show_diff a', (e)->
+    e.preventDefault()
+    $link = $(this)
+    $container = $link.parents('.show_commit')
+    $link.hide()
+    $container.find('.loading').show()
+    $.get $link.attr('href'), (data)->
+      $link.parents('li').html(data)
+
 $ ->
   $('.history').on 'click', '.commits-table tr', (e)->
     ChangeCommit $(this).find('.commit')
@@ -134,6 +144,7 @@ $ ->
   SetHeight()
   TableArrows()
   CommitArrows()
+  ShowDiff()
 
   $(window).resize ->
     SetHeight()

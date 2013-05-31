@@ -1,5 +1,5 @@
 (function() {
-  var ChangeBranch, ChangeCommit, CommitArrows, LoadStatus, SelectDiff, SelectRow, SetHeight, SwitchBranch, TableArrows, UpdateDiffsWidth;
+  var ChangeBranch, ChangeCommit, CommitArrows, LoadStatus, SelectDiff, SelectRow, SetHeight, ShowDiff, SwitchBranch, TableArrows, UpdateDiffsWidth;
 
   ChangeCommit = function($commit) {
     var $target_commit;
@@ -174,6 +174,21 @@
     });
   };
 
+  ShowDiff = function() {
+    return $('body').on('click', '.show_diff a', function(e) {
+      var $container, $link;
+
+      e.preventDefault();
+      $link = $(this);
+      $container = $link.parents('.show_commit');
+      $link.hide();
+      $container.find('.loading').show();
+      return $.get($link.attr('href'), function(data) {
+        return $link.parents('li').html(data);
+      });
+    });
+  };
+
   $(function() {
     $('.history').on('click', '.commits-table tr', function(e) {
       return ChangeCommit($(this).find('.commit'));
@@ -189,6 +204,7 @@
     SetHeight();
     TableArrows();
     CommitArrows();
+    ShowDiff();
     $(window).resize(function() {
       return SetHeight();
     });

@@ -19,4 +19,4 @@
         =' commit.diffs.count
         | files changed
   - else 
-    == slim(:'diffs/list', :locals => {diffs: commit.diffs}, :layout => false).force_encoding('utf-8')
+    == slim(:'diffs/list', :locals => {diffs: commit.diffs, commit: commit}, :layout => false).force_encoding('utf-8')

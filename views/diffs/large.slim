@@ -10,3 +10,9 @@
     .diff-summ-line
       = summ_line(line)
     - break
+.show_diff
+  - if diff.a_blob
+    a href="/diff/#{commit.sha}/a_blob/#{diff.a_blob.id}" show
+  -else
+    a href="/diff/#{commit.sha}/b_blob/#{diff.b_blob.id}" show
+  .loading loading...

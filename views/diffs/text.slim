@@ -1,0 +1,20 @@
+- diff.diff.lines.each do |line|
+  - if line.match /^\-\-\- a/
+    .diff-first-line.diff-a
+      = line
+  - elsif line.match /^\+\+\+ b/
+    .diff-first-line.diff-b
+      = line
+  - elsif line.match /^\+\+\+ \/dev\/null/ or line.match /^\-\-\- \/dev\/null/
+  - elsif line.match /^@@ -/
+    .diff-summ-line
+      = summ_line(line)
+  - elsif line[0] == '+'
+    .diff-added-line
+      == slim(:'diffs/line', :locals => {line: line}, :layout => false).force_encoding('utf-8')
+  - elsif line[0] == '-'
+    .diff-removed-line
+      == slim(:'diffs/line', :locals => {line: line}, :layout => false).force_encoding('utf-8')
+  - else
+    .diff-line
+      == slim(:'diffs/line', :locals => {line: line}, :layout => false).force_encoding('utf-8')
