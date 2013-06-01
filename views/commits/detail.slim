@@ -8,15 +8,17 @@
     div = commit.author.email
   .stats
     - if merge_commit?(commit)
+      - diffs = commit.diffs
       div.merge_commit merge
     -else
+      - diffs = commit.show
       div.additions = "#{ commit.stats.additions } additions"
       div.deletions = "#{ commit.stats.deletions } deletions"
 
   - if large_commit?(commit)
     .diff-names
       .large
-        =' commit.diffs.count
+        =' diffs.count
         | files changed
   - else 
-    == slim(:'diffs/list', :locals => {diffs: commit.diffs, commit: commit}, :layout => false).force_encoding('utf-8')
+    == slim(:'diffs/list', :locals => {diffs: diffs, commit: commit}, :layout => false).force_encoding('utf-8')
