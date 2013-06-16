@@ -29,6 +29,7 @@ nav.top-bar
         ul.dropdown.tags
           == slim :'refs/dropdown', :locals => {refs: @tags}, :layout => false
 .loader
+.ajax-error.alert-box.alert Something went wrong
 .main
   .history.large-6.columns
     == slim :'status/list', :locals => {repo: @repo}, :layout => false

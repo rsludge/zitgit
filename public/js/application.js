@@ -1,5 +1,17 @@
 (function() {
-  var ChangeBranch, ChangeCommit, CommitArrows, LoadStatus, SelectDiff, SelectRow, SetHeight, ShowDiff, SwitchBranch, TableArrows, UpdateDiffsWidth;
+  var ChangeBranch, ChangeCommit, CommitArrows, LoadStatus, SelectDiff, SelectRow, SetHeight, ShowAjaxError, ShowAjaxSuccess, ShowDiff, SwitchBranch, TableArrows, UpdateDiffsWidth;
+
+  ShowAjaxSuccess = function(event, xhr) {
+    clearTimeout(window.ajax_timeout);
+    $('.loader').hide();
+    return $('.ajax-error').hide();
+  };
+
+  ShowAjaxError = function(event, xhr) {
+    clearTimeout(window.ajax_timeout);
+    $('.loader').hide();
+    return $('.ajax-error').show();
+  };
 
   ChangeCommit = function($commit) {
     var $target_commit;
@@ -60,17 +72,13 @@
   };
 
   ChangeBranch = function($link) {
-    var timeout;
-
-    timeout = setTimeout(function() {
+    window.ajax_timeout = setTimeout(function() {
       $('.loader').show();
       return $('.main').hide();
     }, 1500);
     return $.get($link.attr('href'), function(data) {
       var list_class;
 
-      clearTimeout(timeout);
-      $('.loader').hide();
       $('.current_branch').text('');
       if ($link.parents('.ref_label').length) {
         list_class = $link.parents('.ref_label').attr('data-dropdown-name');
@@ -190,6 +198,9 @@
   };
 
   $(function() {
+    window.ajax_timeout = 0;
+    $(document).ajaxError(ShowAjaxError);
+    $(document).ajaxSuccess(ShowAjaxSuccess);
     $('.history').on('click', '.commits-table tr', function(e) {
       return ChangeCommit($(this).find('.commit'));
     });

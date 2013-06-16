@@ -4131,3 +4131,6 @@ a.th {
     border-top: 2px solid #78c3ff;
     border-left: 1px solid #78c3ff;
     border-right: 1px solid #78c3ff; }
+
+.ajax-error {
+  display: none; }

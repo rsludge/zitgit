@@ -1,3 +1,13 @@
+ShowAjaxSuccess = (event, xhr) ->
+  clearTimeout(window.ajax_timeout)
+  $('.loader').hide()
+  $('.ajax-error').hide()
+
+ShowAjaxError = (event, xhr) ->
+  clearTimeout(window.ajax_timeout)
+  $('.loader').hide()
+  $('.ajax-error').show()
+
 ChangeCommit = ($commit)->
   $target_commit = $commit.clone()
   $('.commits-table tr.selected').removeClass 'selected'
@@ -42,13 +52,11 @@ SelectDiff = ($diff) ->
     $('.show_commit .diffs li:eq('+index+')').removeClass('hidden')
 
 ChangeBranch = ($link)->
-  timeout = setTimeout ->
+  window.ajax_timeout = setTimeout ->
     $('.loader').show()
     $('.main').hide()
   , 1500
   $.get $link.attr('href'), (data)->
-    clearTimeout(timeout)
-    $('.loader').hide()
     $('.current_branch').text ''
     if $link.parents('.ref_label').length
       list_class = $link.parents('.ref_label').attr('data-dropdown-name')
@@ -132,6 +140,9 @@ ShowDiff = ->
       $link.parents('li').html(data)
 
 $ ->
+  window.ajax_timeout = 0
+  $(document).ajaxError(ShowAjaxError)
+  $(document).ajaxSuccess(ShowAjaxSuccess)
   $('.history').on 'click', '.commits-table tr', (e)->
     ChangeCommit $(this).find('.commit')
   $('.history').on 'click', '.status-link', (e)->
