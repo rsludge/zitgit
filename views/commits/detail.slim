@@ -17,7 +17,7 @@
 
   - if large_commit?(commit)
     .diff-names
-      .large
+      a.large href="/commit/#{commit.sha}"
         =' diffs.count
         | files changed
   - else 

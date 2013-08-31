@@ -139,6 +139,21 @@ ShowDiff = ->
     $.get $link.attr('href'), (data)->
       $link.parents('li').html(data)
 
+ShowCommit = ->
+  $('body').on 'click', 'a.large', (e)->
+    e.preventDefault()
+    $link = $(this)
+    $container = $link.parents('.show_commit')
+    $link.hide()
+    $container.find('.loading').show()
+    $.get $link.attr('href'), (data)->
+      $link.parents('.diff-names').replaceWith(data)
+      $('.show_commit .diffs li').niceScroll({
+        cursorcolor: '#ccc',
+        cursorwidth: 14,
+      })
+      UpdateDiffsWidth()
+
 $ ->
   window.ajax_timeout = 0
   $(document).ajaxError(ShowAjaxError)
@@ -156,6 +171,7 @@ $ ->
   TableArrows()
   CommitArrows()
   ShowDiff()
+  ShowCommit()
 
   $(window).resize ->
     SetHeight()

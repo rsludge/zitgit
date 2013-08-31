@@ -45,6 +45,12 @@ module Zitgit
       slim :'diffs/text', :locals => {diff: @diff}, :layout => false
     end
 
+    get "/commit/:sha" do |sha|
+      @repo = Grit::Repo.new('.')
+      @commit = @repo.commit(sha)
+      slim :'diffs/list', :locals => {diffs: @commit.diffs, commit: @commit}, :layout => false
+    end
+
     run! if app_file == $0
   end
 end

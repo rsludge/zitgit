@@ -1,5 +1,5 @@
 (function() {
-  var ChangeBranch, ChangeCommit, CommitArrows, LoadStatus, SelectDiff, SelectRow, SetHeight, ShowAjaxError, ShowAjaxSuccess, ShowDiff, SwitchBranch, TableArrows, UpdateDiffsWidth;
+  var ChangeBranch, ChangeCommit, CommitArrows, LoadStatus, SelectDiff, SelectRow, SetHeight, ShowAjaxError, ShowAjaxSuccess, ShowCommit, ShowDiff, SwitchBranch, TableArrows, UpdateDiffsWidth;
 
   ShowAjaxSuccess = function(event, xhr) {
     clearTimeout(window.ajax_timeout);
@@ -197,6 +197,26 @@
     });
   };
 
+  ShowCommit = function() {
+    return $('body').on('click', 'a.large', function(e) {
+      var $container, $link;
+
+      e.preventDefault();
+      $link = $(this);
+      $container = $link.parents('.show_commit');
+      $link.hide();
+      $container.find('.loading').show();
+      return $.get($link.attr('href'), function(data) {
+        $link.parents('.diff-names').replaceWith(data);
+        $('.show_commit .diffs li').niceScroll({
+          cursorcolor: '#ccc',
+          cursorwidth: 14
+        });
+        return UpdateDiffsWidth();
+      });
+    });
+  };
+
   $(function() {
     window.ajax_timeout = 0;
     $(document).ajaxError(ShowAjaxError);
@@ -216,6 +236,7 @@
     TableArrows();
     CommitArrows();
     ShowDiff();
+    ShowCommit();
     $(window).resize(function() {
       return SetHeight();
     });
