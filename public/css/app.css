@@ -3962,9 +3962,9 @@ a.th {
 .ref_label {
   margin: 2px 2px 0 0;
   border: 1px solid black;
-  border-radius: 12px;
   padding: 2px 4px;
-  float: left; }
+  float: left;
+  font-weight: normal; }
   .ref_label a {
     color: #000; }
 
@@ -3987,12 +3987,13 @@ a.th {
     color: #ff9800; }
 
 .commits-table {
+  border-radius: 3px;
   table-layout: fixed;
   border-collapse: collapse; }
   .commits-table thead {
-    background: #cbcbcb; }
+    border-radius: 3px; }
     .commits-table thead tr, .commits-table thead th {
-      border-bottom: 1px solid black; }
+      border-radius: 3px; }
   .commits-table tr td {
     overflow: hidden;
     padding: 8px;
@@ -4001,7 +4002,6 @@ a.th {
     width: 150px; }
     .commits-table .badges .ref_label {
       font-size: 12px;
-      border-radius: 8px;
       padding: 0 2px;
       max-width: 134px;
       word-wrap: break-word;
@@ -4027,7 +4027,6 @@ a.th {
 
 .diff-names {
   clear: left;
-  padding-top: 14px;
   list-style-type: none; }
   .diff-names li {
     margin-bottom: -4px;
@@ -4078,24 +4077,16 @@ a.th {
   display: none; }
 
 .show_commit .commit {
-  padding: 8px;
-  background: #ddd;
-  border-radius: 16px; }
-  .show_commit .commit .author_info {
-    float: left;
-    font-weight: bold;
-    clear: left;
-    color: #eee;
-    text-shadow: 1px 1px 0px #333, 1px -1px 0px #333, -1px 1px 0px #333, -1px -1px 0px #333; }
-  .show_commit .commit .commit_sha {
-    margin-bottom: 14px;
-    clear: left;
-    float: left; }
+  padding: 8px; }
+  .show_commit .commit .commit_info {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding: 0.5em;
+    padding-left: 0; }
   .show_commit .commit .commit_date {
-    margin-bottom: 14px;
-    float: right; }
+    margin-left: 14px; }
   .show_commit .commit .stats {
-    float: right;
+    float: left;
     text-align: right; }
     .show_commit .commit .stats .additions {
       color: green; }
@@ -4121,7 +4112,6 @@ a.th {
     display: none; }
   .status .status-link {
     display: block;
-    font-weight: bold;
     color: #000;
     padding-left: 16px;
     font-size: 20px; }
@@ -4134,3 +4124,20 @@ a.th {
 
 .ajax-error {
   display: none; }
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0; }
+
+.clearfix {
+  display: inline-block; }
+
+html[xmlns] .clearfix {
+  display: block; }
+
+* html .clearfix {
+  height: 1%; }

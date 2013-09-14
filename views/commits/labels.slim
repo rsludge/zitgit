@@ -1,9 +1,9 @@
 - heads(commit).each do |head|
-  .ref_label.branch_label data-dropdown-name="branches"
+  .ref_label.branch_label.label.radius data-dropdown-name="branches"
     a href="ref/#{URI::encode(head.name, '/')}" = head.name
 - remotes(commit).each do |head|
-  .ref_label.remote_label data-dropdown-name="remotes"
+  .ref_label.remote_label.label.radius data-dropdown-name="remotes"
     a href="ref/#{URI::encode(head.name, '/')}" = head.name
 - tags(commit).each do |head|
-  .ref_label.tag_label data-dropdown-name="tags"
+  .ref_label.tag_label.label.radius data-dropdown-name="tags"
     a href="ref/#{URI::encode(head.name, '/')}" = head.name
