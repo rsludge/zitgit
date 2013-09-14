@@ -3988,8 +3988,10 @@ a.th {
 
 .commits-table {
   border-radius: 3px;
+  border: 1px solid #d9d9d9;
   table-layout: fixed;
-  border-collapse: collapse; }
+  border-collapse: separate;
+  border-spacing: 0; }
   .commits-table thead {
     border-radius: 3px; }
     .commits-table thead tr, .commits-table thead th {

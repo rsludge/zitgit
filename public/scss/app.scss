@@ -45,14 +45,16 @@
 }
 .commits-table{
     border-radius: 3px;
+    border: 1px solid #d9d9d9;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing:0;
     thead{
         border-radius: 3px;
         tr, th{
             border-radius: 3px;
         }
     }
-    table-layout: fixed;
-    border-collapse: collapse;
     tr{
         td{
             overflow: hidden;
