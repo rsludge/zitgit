@@ -45,7 +45,6 @@
 }
 .commits-table{
     border-radius: 3px;
-    border: 1px solid #d9d9d9;
     table-layout: fixed;
     border-collapse: separate;
     border-spacing:0;
@@ -126,24 +125,25 @@
     list-style-type: none;
     font-family: monospace;
     li{
-        border-bottom: solid #ddd 8px;
+        border-bottom: solid #d7b2b2 8px;
         overflow-x: scroll;        
         div{
             white-space: pre;
             font-size: 14px;
+            background-color: #ffebeb;
         }
         .diff-first-line{
             font-weight: bold;
-            background: #eee;
+            background: #fc8181;
             border-bottom: 1px solid #777;
         }
         .diff-summ-line{
-            background: #eee;
+            background: #fc8181;
             font-weight: bold;
         }
         .diff-added-line{
-            color: #096707;            
-            background: #87f49f;
+            color: #030101;            
+            background: #2cd752;
             .trailing{
                 background: #036420;
             }
@@ -152,8 +152,8 @@
             position: relative;
             left: 0;
             right: 0;
-            color: #742b2b;
-            background: #ffb1cb;
+            color: #030101;
+            background: #fb2828;
             .trailing{
                 background: #c10000;
             }

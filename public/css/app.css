@@ -10,7 +10,7 @@ body {
   font-size: 100%; }
 
 body {
-  background: white;
+  background: #beb9b9;
   color: #222222;
   padding: 0;
   margin: 0;
@@ -3405,10 +3405,10 @@ kbd {
 .panel {
   border-style: solid;
   border-width: 1px;
-  border-color: #d9d9d9;
+  border-color: #c69090;
   margin-bottom: 1.25em;
   padding: 1.25em;
-  background: #f2f2f2; }
+  background: #d7b2b2; }
   .panel h1, .panel h2, .panel h3, .panel h4, .panel h5, .panel h6, .panel p {
     color: #333333; }
   .panel > :first-child {
@@ -3744,12 +3744,12 @@ kbd {
 
 /* Tables */
 table {
-  background: white;
+  background: #ffebeb;
   margin-bottom: 1.25em;
-  border: solid 1px #dddddd; }
+  border: solid 1px #c69090; }
   table thead,
   table tfoot {
-    background: whitesmoke;
+    background: #d7b2b2;
     font-weight: bold; }
     table thead tr th,
     table thead tr td,
@@ -3765,7 +3765,7 @@ table {
     font-size: 0.875em;
     color: #222222; }
   table tr.even, table tr.alt, table tr:nth-of-type(even) {
-    background: #f9f9f9; }
+    background: #ffd3d3; }
   table thead tr th,
   table tfoot tr th,
   table tbody tr td,
@@ -3988,7 +3988,6 @@ a.th {
 
 .commits-table {
   border-radius: 3px;
-  border: 1px solid #d9d9d9;
   table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0; }
@@ -4045,29 +4044,30 @@ a.th {
   list-style-type: none;
   font-family: monospace; }
   .diffs li {
-    border-bottom: solid #ddd 8px;
+    border-bottom: solid #d7b2b2 8px;
     overflow-x: scroll; }
     .diffs li div {
       white-space: pre;
-      font-size: 14px; }
+      font-size: 14px;
+      background-color: #ffebeb; }
     .diffs li .diff-first-line {
       font-weight: bold;
-      background: #eee;
+      background: #fc8181;
       border-bottom: 1px solid #777; }
     .diffs li .diff-summ-line {
-      background: #eee;
+      background: #fc8181;
       font-weight: bold; }
     .diffs li .diff-added-line {
-      color: #096707;
-      background: #87f49f; }
+      color: #030101;
+      background: #2cd752; }
       .diffs li .diff-added-line .trailing {
         background: #036420; }
     .diffs li .diff-removed-line {
       position: relative;
       left: 0;
       right: 0;
-      color: #742b2b;
-      background: #ffb1cb; }
+      color: #030101;
+      background: #fb2828; }
       .diffs li .diff-removed-line .trailing {
         background: #c10000; }
     .diffs li .loading {

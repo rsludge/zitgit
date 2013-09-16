@@ -22,7 +22,7 @@ $em-base: 16px !default;
 }
 
 // We use these to control various global styles
-// $body-bg: #fff;
+$body-bg: #beb9b9;
 // $body-font-color: #222;
 // $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: normal;
@@ -699,12 +699,14 @@ $em-base: 16px !default;
 
 // We use these to control the background and border styles
 // $panel-bg: darken(#fff, 5%);
+$panel-bg: #d7b2b2;
 // $panel-border-style: solid;
 // $panel-border-size: 1px;
 
 // We use this % to control how much we darken things on hover
 // $panel-function-factor: 10%;
 // $panel-border-color: darken($panel-bg, $panel-function-factor);
+$panel-border-color: #935959;
 
 // We use these to set default inner padding and bottom margin
 // $panel-margin-bottom: emCalc(20px);
@@ -928,15 +930,19 @@ $em-base: 16px !default;
 
 // These control the background color for the table and even rows
 // $table-bg: #fff;
+$table-bg: #ffebeb;
 // $table-even-row-bg: #f9f9f9;
+$table-even-row-bg: #ffd3d3;
 
 // These control the table cell border style
 // $table-border-style: solid;
 // $table-border-size: 1px;
 // $table-border-color: #ddd;
+$table-border-color: #c69090;
 
 // These control the table head styles
 // $table-head-bg: #f5f5f5;
+$table-head-bg: #d7b2b2;
 // $table-head-font-size: emCalc(14px);
 // $table-head-font-color: #222;
 // $table-head-font-weight: bold;
@@ -1035,3 +1041,4 @@ $em-base: 16px !default;
 // $topbar-transition-speed: 300ms;
 // $topbar-breakpoint: emCalc(940px); // Change to 9999px for always mobile layout
 // $topbar-media-query: "only screen and (min-width: "#{$topbar-breakpoint}")";
+
