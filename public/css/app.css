@@ -4059,7 +4059,7 @@ a.th {
       font-weight: bold; }
     .diffs li .diff-added-line {
       color: #030101;
-      background: #2cd752; }
+      background: #3ef466; }
       .diffs li .diff-added-line .trailing {
         background: #036420; }
     .diffs li .diff-removed-line {
@@ -4067,7 +4067,7 @@ a.th {
       left: 0;
       right: 0;
       color: #030101;
-      background: #fb2828; }
+      background: #ef3737; }
       .diffs li .diff-removed-line .trailing {
         background: #c10000; }
     .diffs li .loading {
