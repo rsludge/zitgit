@@ -137,6 +137,7 @@ ShowDiff = ->
     $link.hide()
     $container.find('.loading').show()
     $.get $link.attr('href'), (data)->
+      $container.find('.loading').hide()
       $link.parents('li').html(data)
 
 ShowCommit = ->

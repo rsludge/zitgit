@@ -192,6 +192,7 @@
       $link.hide();
       $container.find('.loading').show();
       return $.get($link.attr('href'), function(data) {
+        $container.find('.loading').hide();
         return $link.parents('li').html(data);
       });
     });
