@@ -50,6 +50,7 @@ SelectDiff = ($diff) ->
     index = $diff.index() - 1
     $('.show_commit .diffs li').addClass('hidden')
     $('.show_commit .diffs li:eq('+index+')').removeClass('hidden')
+  UpdateDiffsWidth()
 
 ChangeBranch = ($link)->
   window.ajax_timeout = setTimeout ->
@@ -139,6 +140,11 @@ ShowDiff = ->
     $.get $link.attr('href'), (data)->
       $container.find('.loading').hide()
       $link.parents('li').html(data)
+      $('.show_commit .diffs li').niceScroll({
+        cursorcolor: '#ccc',
+        cursorwidth: 14,
+      })
+      UpdateDiffsWidth()
 
 ShowCommit = ->
   $('body').on 'click', 'a.large', (e)->

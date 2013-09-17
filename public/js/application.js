@@ -63,12 +63,13 @@
     $('.show_commit .diff-names .selected').removeClass('selected');
     $diff.addClass('selected');
     if ($diff.hasClass('all')) {
-      return $('.show_commit .diffs li').removeClass('hidden');
+      $('.show_commit .diffs li').removeClass('hidden');
     } else {
       index = $diff.index() - 1;
       $('.show_commit .diffs li').addClass('hidden');
-      return $('.show_commit .diffs li:eq(' + index + ')').removeClass('hidden');
+      $('.show_commit .diffs li:eq(' + index + ')').removeClass('hidden');
     }
+    return UpdateDiffsWidth();
   };
 
   ChangeBranch = function($link) {
@@ -193,7 +194,12 @@
       $container.find('.loading').show();
       return $.get($link.attr('href'), function(data) {
         $container.find('.loading').hide();
-        return $link.parents('li').html(data);
+        $link.parents('li').html(data);
+        $('.show_commit .diffs li').niceScroll({
+          cursorcolor: '#ccc',
+          cursorwidth: 14
+        });
+        return UpdateDiffsWidth();
       });
     });
   };
