@@ -1,3 +1,5 @@
+scroll_color = '#d7b2b2'
+
 ShowAjaxSuccess = (event, xhr) ->
   clearTimeout(window.ajax_timeout)
   $('.loader').hide()
@@ -15,7 +17,7 @@ ChangeCommit = ($commit)->
   $commit.parents('tr').addClass 'selected'
   $('.show_commit').html $target_commit
   $('.show_commit .diffs li').niceScroll({
-    cursorcolor: '#ccc',
+    cursorcolor: scroll_color,
     cursorwidth: 14,
   })
   UpdateDiffsWidth()
@@ -26,7 +28,7 @@ LoadStatus = ->
   $status_content = $('.status .status_content').clone()
   $('.show_commit').html $status_content
   $('.show_commit .diffs li').niceScroll({
-    cursorcolor: '#ccc',
+    cursorcolor: scroll_color,
     cursorwidth: 14,
   })
   UpdateDiffsWidth()
@@ -141,7 +143,7 @@ ShowDiff = ->
       $container.find('.loading').hide()
       $link.parents('li').html(data)
       $('.show_commit .diffs li').niceScroll({
-        cursorcolor: '#ccc',
+        cursorcolor: scroll_color,
         cursorwidth: 14,
       })
       UpdateDiffsWidth()
@@ -156,7 +158,7 @@ ShowCommit = ->
     $.get $link.attr('href'), (data)->
       $link.parents('.diff-names').replaceWith(data)
       $('.show_commit .diffs li').niceScroll({
-        cursorcolor: '#ccc',
+        cursorcolor: scroll_color,
         cursorwidth: 14,
       })
       UpdateDiffsWidth()
@@ -184,17 +186,17 @@ $ ->
     SetHeight()
 
   $('.show_commit').niceScroll({
-    cursorcolor: '#ccc',
+    cursorcolor: scroll_color,
     cursorwidth: 14
   })
   $('.history').niceScroll({
-    cursorcolor: '#ccc',
+    cursorcolor: scroll_color,
     cursorwidth: 14,
     railalign: 'left',
     horizrailenabled: false
   })
   $('.show_commit .diffs li').niceScroll({
-    cursorcolor: '#ccc',
+    cursorcolor: scroll_color,
     cursorwidth: 14,
   })
   UpdateDiffsWidth()

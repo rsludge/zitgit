@@ -1,5 +1,7 @@
 (function() {
-  var ChangeBranch, ChangeCommit, CommitArrows, LoadStatus, SelectDiff, SelectRow, SetHeight, ShowAjaxError, ShowAjaxSuccess, ShowCommit, ShowDiff, SwitchBranch, TableArrows, UpdateDiffsWidth;
+  var ChangeBranch, ChangeCommit, CommitArrows, LoadStatus, SelectDiff, SelectRow, SetHeight, ShowAjaxError, ShowAjaxSuccess, ShowCommit, ShowDiff, SwitchBranch, TableArrows, UpdateDiffsWidth, scroll_color;
+
+  scroll_color = '#d7b2b2';
 
   ShowAjaxSuccess = function(event, xhr) {
     clearTimeout(window.ajax_timeout);
@@ -22,7 +24,7 @@
     $commit.parents('tr').addClass('selected');
     $('.show_commit').html($target_commit);
     $('.show_commit .diffs li').niceScroll({
-      cursorcolor: '#ccc',
+      cursorcolor: scroll_color,
       cursorwidth: 14
     });
     return UpdateDiffsWidth();
@@ -36,7 +38,7 @@
     $status_content = $('.status .status_content').clone();
     $('.show_commit').html($status_content);
     $('.show_commit .diffs li').niceScroll({
-      cursorcolor: '#ccc',
+      cursorcolor: scroll_color,
       cursorwidth: 14
     });
     return UpdateDiffsWidth();
@@ -196,7 +198,7 @@
         $container.find('.loading').hide();
         $link.parents('li').html(data);
         $('.show_commit .diffs li').niceScroll({
-          cursorcolor: '#ccc',
+          cursorcolor: scroll_color,
           cursorwidth: 14
         });
         return UpdateDiffsWidth();
@@ -216,7 +218,7 @@
       return $.get($link.attr('href'), function(data) {
         $link.parents('.diff-names').replaceWith(data);
         $('.show_commit .diffs li').niceScroll({
-          cursorcolor: '#ccc',
+          cursorcolor: scroll_color,
           cursorwidth: 14
         });
         return UpdateDiffsWidth();
@@ -248,17 +250,17 @@
       return SetHeight();
     });
     $('.show_commit').niceScroll({
-      cursorcolor: '#ccc',
+      cursorcolor: scroll_color,
       cursorwidth: 14
     });
     $('.history').niceScroll({
-      cursorcolor: '#ccc',
+      cursorcolor: scroll_color,
       cursorwidth: 14,
       railalign: 'left',
       horizrailenabled: false
     });
     $('.show_commit .diffs li').niceScroll({
-      cursorcolor: '#ccc',
+      cursorcolor: scroll_color,
       cursorwidth: 14
     });
     return UpdateDiffsWidth();
