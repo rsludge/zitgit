@@ -1,5 +1,9 @@
 @import "foundation/foundation";
 
+body{
+    overflow-y:hidden;
+}
+
 .top-bar {
     z-index: 6;
     .refresh{
@@ -37,10 +41,10 @@
     }
 }
 .tag_label{
-    background: #ffe6bc;
-    border-color: #ff9800;
+    background: #fff4e1;
+    border-color: #935a05;
     a{
-        color: #ff9800;
+        color: #935a05;
     }
 }
 .commits-table{

@@ -3950,6 +3950,9 @@ a.th {
   .f-dropdown.large {
     max-width: 800px; }
 
+body {
+  overflow-y: hidden; }
+
 .top-bar {
   z-index: 6; }
   .top-bar .refresh img {
@@ -3981,10 +3984,10 @@ a.th {
     color: #b32222; }
 
 .tag_label {
-  background: #ffe6bc;
-  border-color: #ff9800; }
+  background: #fff4e1;
+  border-color: #935a05; }
   .tag_label a {
-    color: #ff9800; }
+    color: #935a05; }
 
 .commits-table {
   border-radius: 3px;
