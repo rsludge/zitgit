@@ -10,6 +10,7 @@ require 'base64'
 module Zitgit
   class Zitgit < Sinatra::Base
     configure do
+      set :server, :puma
       set :root, File.expand_path('..', File.dirname(__FILE__))
     end
     helpers ViewsHelpers

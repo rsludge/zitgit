@@ -3,6 +3,7 @@ PATH
   specs:
     zitgit (0.1.1)
       gitlab-grit (~> 2.5.1)
+      puma
       sinatra (~> 1.4)
       slim (~> 2.0)
 
@@ -51,6 +52,8 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    puma (2.7.1)
+      rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-protection (1.5.1)
       rack
