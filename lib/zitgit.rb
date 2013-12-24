@@ -35,6 +35,12 @@ module Zitgit
       slim :branch, :locals => { commits: commits }, :layout => false
     end
 
+    get "/ref/origin/:ref_name" do |ref_name|
+      @repo = Grit::Repo.new('.')
+      commits = @repo.commits("origin/#{ref_name}", 200)
+      slim :branch, :locals => { commits: commits }, :layout => false
+    end 
+
     get "/status/" do
       @repo = Grit::Repo.new('.')
       slim :'status/list', :locals => {repo: @repo}, :layout => false
